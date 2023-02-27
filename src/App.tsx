@@ -1,13 +1,9 @@
 import { Card, CardHeader, CardMedia, CardActions, Button, Avatar, Pagination, TextField } from '@mui/material';
 import { Search, WalletOutlined } from '@mui/icons-material';
-import { useCallback, useEffect, useState } from 'react';
-import { blue, green, red, yellow } from '@mui/material/colors';
+import { useEffect, useState } from 'react';
 import Image from 'rc-image';
 import SyncIcon from '@mui/icons-material/Sync';
 
-const assetProperties = [
-  'Bear', 'Face', 'Head', 'Skins', 'Clothes', 'Handheld', 'Background'
-];
 
 type TeddyBearAssetMetadata = {
   Bear: string,
@@ -21,15 +17,6 @@ type TeddyBearAssetMetadata = {
   Background: string
 }
 
-type TeddyBearAsset = {
-  asset_name_ascii: string,
-  fingerprint: string,
-  minting_tx_metadata: {
-    json: {
-      ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87: Record<string, TeddyBearAssetMetadata>
-    }
-  }
-}
 
 type RankedTeddyBearAsset = {
   rarityRank: string,
@@ -66,7 +53,7 @@ function App() {
 
   return (
     <div className="App bg-main bg-cover bg-center w-[100vw] h-[100vh] pb-6">
-      <main className="container mx-auto relative">
+      <main className="container mx-auto relative px-2 md:py-0">
         <header className="pt-4">
           <div className="flex justify-center lg:justify-start"><img src="teddy-logo.svg" alt="logo" className="w-[200px]" /></div>
           <h1 className="text-[#66A7F2] lg:text-[35px] text-[25px] font-bold text-center">Teddy Bears Club</h1>
