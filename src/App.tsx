@@ -52,70 +52,61 @@ function App() {
   }, []);
 
   return (
-    <div className="App bg-main bg-cover bg-center w-[100vw] h-[100vh] pb-6">
-      <main className="container mx-auto relative px-2 md:py-0">
-        <header className="pt-4">
-          <div className="flex justify-center lg:justify-start"><img src="teddy-logo.svg" alt="logo" className="w-[200px]" /></div>
-          <h1 className="text-[#66A7F2] lg:text-[35px] text-[25px] font-bold text-center">Teddy Bears Club</h1>
-          <h2 className="text-[#66A7F2] lg:text-[25px] text-[15px] font-bold text-center">NFT Collection</h2>
-        </header>
-        <section className="mt-4">
-          <h2 className="text-[#66A7F2] lg:text-[25px] text-[15px] font-bold">Utilities</h2>
-          <div className="mt-4 grid lg:grid-cols-3 grid-cols-1 gap-12">
-            <Card sx={{ background: '#1a282e' }} className="!rounded-md p-6" elevation={6}>
-              <CardMedia
-                component="img"
-                height="194"
-                image="/t1.webp"
-                alt="Teddy1"
-              />
-              <CardHeader
-                className="text-center"
-                title="Earn $TEDY"
-                subheader="Earn between 10,500-28,000 TEDY tokens per NFT!"
-                titleTypographyProps={{
-                  className: 'text-white'
-                }}
-              />
-            </Card>
-            <Card sx={{ background: '#1a282e' }} className="!rounded-md p-6" elevation={6}>
-              <CardMedia
-                component="img"
-                height="194"
-                image="/t2.webp"
-                alt="Teddy1"
-              />
-              <CardHeader
-                className="text-center"
-                title="FISO Bonus"
-                subheader="10% Bonus FISO rewards per NFT!"
-                titleTypographyProps={{
-                  className: 'text-white'
-                }}
-              />
-              <CardActions className="justify-center">
-                <Button startIcon={<WalletOutlined />} size="small" href="https://fiso.teddyswap.org/" target="_blank">Stake Now!</Button>
-              </CardActions>
-            </Card>
-            <Card sx={{ background: '#1a282e' }} className="!rounded-md p-6" elevation={6}>
-              <CardMedia
-                component="img"
-                height="194"
-                image="/t3.webp"
-                alt="Teddy1"
-              />
-              <CardHeader
-                className="text-center"
-                title="Yield Farming & LBE Bonus"
-                subheader="1% bonus for providing liquidity on certain pairs and LBE event!"
-                titleTypographyProps={{
-                  className: 'text-white'
-                }}
-              />
-            </Card>
+    <div className="App w-[100vw] h-[100vh] pb-6">
+      <main className="container mx-auto relative">
+        <div className="bg-mobile-main bg-cover bg-center">
+          <header className="pt-4 px-5 flex">
+            <div className="flex justify-start w-[90px] lg:justify-start"><img src="teddy-logo.svg" alt="logo" className="w-[200px]" /></div>
+          </header>
+          <section className="mt-24">
+            <div className="w-[280px] m-auto">
+              <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
+            </div>
+            <h2 className="w-[210px] mt-10 text-center text-sm text-white m-auto">
+              The TeddySwap Initial NFT Offering provides TEDY tokens, boosts yield farming, and more on the TeddySwap DEX.
+            </h2>
+            <div className="mt-8 w-[280px] m-auto">
+              <img src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />
+            </div>
+          </section>
+        </div>
+
+        <section className="bg-aztec pt-8">
+          <h3 className="text-gold-sand text-center">Mint Price: 150 ADA</h3>
+
+          <div className="w-[280px] m-auto mt-5">
+            <h4 className="text-gold-sand text-[10px]">Each NFT includes</h4>
+            <ul className="text-gold-sand flex flex-col gap-4 mt-2">
+              <li className="bg-firefly text-center text-[22px] rounded py-5 font-bold w-[260px]">
+                Up to 30,000 TEDY
+              </li>
+              <li className="bg-firefly text-center text-[22px] rounded py-5 font-bold w-[260px] self-end">
+                +3% FISO Rewards <span className="text-[8px]">+up to 20%</span>
+              </li>
+              <li className="bg-firefly text-center text-[22px] rounded py-5 font-bold w-[260px]">
+                +2% LBE Bonus <span className="text-[8px]">*Up to 20%</span>
+              </li>
+            </ul>
           </div>
+
+          <div className="mt-14 w-[220px] m-auto">
+            <p className="font-bold text-white text-[12px] ">
+              The Teddy Bears Club is a limited NFT collection that provides utility to users of TeddySwap, the coziest stable-coin DEX on Cardano. Join the Teddy Bears Club and earn TEDY tokens.
+            </p>
+            <p className="font-bold text-white text-[12px] mt-4">
+            Members of the The Teddy Bears Club will receive 20,00 to 30,00 TEDY tokens  To learn more, check out our medium.
+            </p>
+          </div>
+
+          <ul className="flex flex-col w-[200px] m-auto mt-10 gap-5">
+            <li className="order-2"><img src="teddy-1.png" alt="" /></li>
+            <li className="order-3"><img src="teddy-2.png" alt="" /></li>
+            <li className="order-1"><img src="teddy-3.png" alt="" /></li>
+            <li className="order-4"><img src="teddy-4.png" alt="" /></li>
+          </ul>
         </section>
-        <section className="mt-4">
+
+        <section className="pt-4 bg-aztec">
           <h2 className="text-[#66A7F2] lg:text-[25px] text-[15px] font-bold">Explorer</h2>
           <div className="my-4 flex w-full flex-col md:flex-row">
             <div className="flex w-full">
