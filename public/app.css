@@ -636,10 +636,6 @@ video {
   margin-top: 2rem;
 }
 
-.mt-0 {
-  margin-top: 0px;
-}
-
 .flex {
   display: flex;
 }
@@ -759,10 +755,6 @@ video {
   gap: 1rem;
 }
 
-.gap-40 {
-  gap: 10rem;
-}
-
 .gap-5 {
   gap: 1.25rem;
 }
@@ -803,7 +795,7 @@ video {
 }
 
 .bg-wave {
-  background-image: url('/wave3.png');
+  background-image: url('/wave.png');
 }
 
 .bg-contain {
@@ -822,10 +814,6 @@ video {
   background-repeat: no-repeat;
 }
 
-.p-6 {
-  padding: 1.5rem;
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -834,6 +822,10 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.pb-14 {
+  padding-bottom: 3.5rem;
 }
 
 .pt-10 {
@@ -852,10 +844,6 @@ video {
   padding-top: 18.38%;
 }
 
-.pb-14 {
-  padding-bottom: 3.5rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -868,20 +856,16 @@ video {
   font-size: 14px;
 }
 
+.text-\[20px\] {
+  font-size: 20px;
+}
+
 .text-\[22px\] {
   font-size: 22px;
 }
 
 .text-\[8px\] {
   font-size: 8px;
-}
-
-.text-\[18px\] {
-  font-size: 18px;
-}
-
-.text-\[20px\] {
-  font-size: 20px;
 }
 
 .font-bold {
@@ -904,14 +888,6 @@ video {
 
 .opacity-80 {
   opacity: 0.8;
-}
-
-.outline {
-  outline-style: solid;
-}
-
-.outline-1 {
-  outline-width: 1px;
 }
 
 .filter {
@@ -1022,24 +998,8 @@ video {
     margin-top: 3.5rem;
   }
 
-  .lg\:mt-\[12vw\] {
-    margin-top: 12vw;
-  }
-
-  .lg\:mt-\[10vw\] {
-    margin-top: 10vw;
-  }
-
   .lg\:mt-\[11vw\] {
     margin-top: 11vw;
-  }
-
-  .lg\:mt-8 {
-    margin-top: 2rem;
-  }
-
-  .lg\:mt-10 {
-    margin-top: 2.5rem;
   }
 
   .lg\:block {
@@ -1074,12 +1034,12 @@ video {
     width: 900px;
   }
 
-  .lg\:grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:justify-end {
@@ -1102,26 +1062,25 @@ video {
     background-image: url('/main-bg.png');
   }
 
-  .lg\:py-12 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
   .lg\:py-10 {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
-  }
-
-  .lg\:pt-\[50px\] {
-    padding-top: 50px;
   }
 
   .lg\:pt-8 {
     padding-top: 2rem;
   }
 
+  .lg\:pt-\[50px\] {
+    padding-top: 50px;
+  }
+
   .lg\:text-left {
     text-align: left;
+  }
+
+  .lg\:text-\[18px\] {
+    font-size: 18px;
   }
 
   .lg\:text-\[25px\] {
@@ -1132,28 +1091,12 @@ video {
     font-size: 1rem;
     line-height: 1.5rem;
   }
-
-  .lg\:text-\[28px\] {
-    font-size: 28px;
-  }
-
-  .lg\:text-\[20px\] {
-    font-size: 20px;
-  }
-
-  .lg\:text-\[18px\] {
-    font-size: 18px;
-  }
 }
 
 @media (min-width: 1280px) {
   .xl\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
-  }
-
-  .xl\:mt-0 {
-    margin-top: 0px;
   }
 
   .xl\:mt-20 {
@@ -1176,18 +1119,6 @@ video {
     display: block;
   }
 
-  .xl\:flex {
-    display: flex;
-  }
-
-  .xl\:grid {
-    display: grid;
-  }
-
-  .xl\:hidden {
-    display: none;
-  }
-
   .xl\:w-\[1200px\] {
     width: 1200px;
   }
@@ -1200,10 +1131,6 @@ video {
     width: 514px;
   }
 
-  .xl\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1212,16 +1139,12 @@ video {
     gap: 2.5rem;
   }
 
-  .xl\:gap-\[35px\] {
-    gap: 35px;
-  }
-
   .xl\:gap-40 {
     gap: 10rem;
   }
 
-  .xl\:rounded-\[15px\] {
-    border-radius: 15px;
+  .xl\:gap-\[35px\] {
+    gap: 35px;
   }
 
   .xl\:py-14 {
@@ -1237,12 +1160,12 @@ video {
     font-size: 30px;
   }
 
-  .xl\:text-\[50px\] {
-    font-size: 50px;
-  }
-
   .xl\:text-\[32px\] {
     font-size: 32px;
+  }
+
+  .xl\:text-\[50px\] {
+    font-size: 50px;
   }
 }
 
@@ -1251,8 +1174,8 @@ video {
     margin-left: 45px;
   }
 
-  .\32xl\:mt-14 {
-    margin-top: 3.5rem;
+  .\32xl\:mt-0 {
+    margin-top: 0px;
   }
 
   .\32xl\:mt-4 {
@@ -1261,10 +1184,6 @@ video {
 
   .\32xl\:mt-\[232px\] {
     margin-top: 232px;
-  }
-
-  .\32xl\:mt-0 {
-    margin-top: 0px;
   }
 
   .\32xl\:w-\[210px\] {

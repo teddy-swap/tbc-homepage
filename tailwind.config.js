@@ -23,7 +23,7 @@ module.exports = {
       },
       backgroundImage: {
         'main': "url('/main-bg.png')",
-        'wave': "url('/wave3.png')",
+        'wave': "url('/wave.png')",
         'teddy': "url('/teddy-smirk.png')",
         'mobile-main': "url('/mobile-main-bg.png')",
       },
