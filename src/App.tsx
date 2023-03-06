@@ -52,7 +52,7 @@ function App() {
   }, []);
 
   return (
-    <main className="App w-[100vw] h-[100vh] bg-aztec">
+    <main className="App w-[100vw] h-[100vh] pb-14 bg-aztec">
       {/* SECTION ONE */}
       <section className="bg-mobile-main lg:bg-main bg-cover bg-center h-[100vh] relative">
         <header className="pt-10 sm:pt-14 lg:pt-[50px] 2xl:pt-[58px] px-5 md:px-16">
@@ -99,7 +99,7 @@ function App() {
           </ul>
         </div>
 
-        <div className="outline outline-1 mt-16 xl:mt-[120px] 2xl:mt-[232px] lg:flex items-center justify-between lg:gap-20 xl:gap-40">
+        <div className="mt-16 xl:mt-[120px] 2xl:mt-[232px] lg:flex items-center justify-between lg:gap-20 xl:gap-40">
           <div className=" grow text-white text-justify order-2 xl:w-[514px] font-bold xl:text-[28px]">
             <p>
               The Teddy Bears Club is a limited NFT collection that provides utility to users of TeddySwap, the coziest stable-coin DEX on Cardano. Join the Teddy Bears Club and earn TEDY tokens.
@@ -124,7 +124,7 @@ function App() {
           <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 md:order-1">
             <TextField className="w-full md:w-auto" id="outlined-basic" label="Search" variant="outlined" size="small" InputProps={{ endAdornment: <Search /> }} value={search} onChange={(e) => setSearch(e.target.value)} />
           </div>
-          <div className="flex w-full">
+          <div className="flex w-full ">
             <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
             <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
           </div>
@@ -132,7 +132,7 @@ function App() {
         <div className="xl:mt-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-12">
           {bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').slice((page - 1) * ASSETS_PER_PAGE, ((page - 1) * ASSETS_PER_PAGE) + ASSETS_PER_PAGE).map((a, i) => {
             return (
-              <Card sx={{ background: '#1a282e' }} className="!rounded-md p-6" elevation={6} key={i}>
+              <Card sx={{ background: '#1a282e' }} className="!rounded-md" elevation={6} key={i}>
                 <div className="relative">
                   <Image
                     src={`https://teddyswap.infura-ipfs.io/ipfs/${a.url}`}
@@ -142,6 +142,7 @@ function App() {
                   />
                 </div>
                 <CardHeader
+                  sx={{display: 'flex', flexDirection: 'column', gap: '5px', textAlign: 'center'}}
                   avatar={
                     <Avatar sx={{ bgcolor: 'rgb(102 167 242)', color: "#FFF" }} aria-label="recipe">
                       {(ASSETS_PER_PAGE * (page - 1)) + i + 1}
