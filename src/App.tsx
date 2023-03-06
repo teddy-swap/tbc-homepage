@@ -82,24 +82,25 @@ function App() {
       </section>
 
       {/* SECTION TWO */}
-      {/* <section className="w-[300px] md:w-[500px] m-auto lg:w-[900px] xl:w-[1200px] pt-12">
-        <h3 className="text-gold-sand text-center font-bold xl:hidden">Mint Price: 150 ADA</h3>
-        <div className="mt-5 2xl:mt-14">
-          <h4 className="text-gold-sand font-medium text-[14px] xl:text-[30px]">Each NFT includes</h4>
+      <section className="w-[300px] md:w-[500px] m-auto lg:w-[900px] xl:w-[1200px] pt-12 lg:pt-8">
+        <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px]">Mint Price: 150 ADA</h3>
+        <div className="mt-5 lg:mt-14">
+          <h4 className="text-gold-sand font-medium text-[14px] lg:text-[18px] xl:text-[30px]">Each NFT includes</h4>
           <ul className="text-gold-sand flex flex-col gap-4 xl:gap-[35px] 3xl:gap-[46px] mt-2 2xl:mt-4">
-            <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 3xl:text-[80px] rounded xl:rounded-[15px] 3xl:rounded-[25px] py-5 md:py-7 xl:py-14 3xl:py-[66px] font-bold w-[85%] 3xl:w-[1101px]">
+            <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 3xl:text-[80px] rounded lg:rounded-[15px] 3xl:rounded-[25px] py-5 md:py-7 lg:py-10 xl:py-14 3xl:py-[66px] font-bold w-[85%] 3xl:w-[1101px]">
               Up to 30,000 TEDY
             </li>
-            <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 3xl:text-[80px] xl:rounded-[15px] rounded 3xl:rounded-[25px] xl:py-14 py-5 md:py-7 3xl:py-[66px] font-bold w-[85%] 3xl:w-[1101px] self-end">
+            <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 3xl:text-[80px] lg:rounded-[15px] rounded 3xl:rounded-[25px] xl:py-14 py-5 lg:py-10 md:py-7 3xl:py-[66px] font-bold w-[85%] 3xl:w-[1101px] self-end">
               +3% FISO Rewards <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">+up to 20%</span>
             </li>
-            <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 3xl:text-[80px] xl:rounded-[15px] rounded 3xl:rounded-[25px] xl:py-14 py-5 md:py-7 3xl:py-[66px] font-bold w-[85%] 3xl:w-[1101px]">
+            <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 3xl:text-[80px] lg:rounded-[15px] rounded 3xl:rounded-[25px] xl:py-14 py-5 lg:py-10 md:py-7 3xl:py-[66px] font-bold w-[85%] 3xl:w-[1101px]">
               +2% LBE Bonus <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*Up to 20%</span>
             </li>
           </ul>
         </div>
-        <div className="mt-16 xl:mt-[120px] 2xl:mt-[232px] xl:flex items-center justify-between gap-40">
-          <div className="text-white text-justify order-2 xl:w-[514px] font-bold xl:text-[28px]">
+
+        <div className="outline outline-1 mt-16 xl:mt-[120px] 2xl:mt-[232px] lg:flex items-center justify-between lg:gap-20 xl:gap-40">
+          <div className=" grow text-white text-justify order-2 xl:w-[514px] font-bold xl:text-[28px]">
             <p>
               The Teddy Bears Club is a limited NFT collection that provides utility to users of TeddySwap, the coziest stable-coin DEX on Cardano. Join the Teddy Bears Club and earn TEDY tokens.
             </p>
@@ -107,17 +108,17 @@ function App() {
               Members of the The Teddy Bears Club will receive 20,00 to 30,00 TEDY tokens  To learn more, check out our medium.
             </p>
           </div>
-          <ul className="hidden xl:grid grid-cols-1 xl:grid-cols-2 order-1 m-auto gap-8 xl:gap-10 mt-20 xl:mt-0">
+          <ul className="hidden grow lg:grid grid-cols-1 lg:grid-cols-2 order-1 m-auto gap-8 xl:gap-10 mt-20 lg:mt-0">
             <li className="order-2 lg:order-1"><img src="teddy-1.png" alt="random teddy nft" /></li>
             <li className="order-3 lg:order-2"><img src="teddy-2.png" alt="random teddy nft" /></li>
             <li className="order-1 lg:order-3"><img src="teddy-3.png" alt="random teddy nft" /></li>
             <li className="order-4 lg:order-4"><img src="teddy-4.png" alt="random teddy nft" /></li>
           </ul>
         </div>
-      </section> */}
+      </section>
 
       {/* SECTION THREE */}
-      {/* <section className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] m-auto xl:mt-20 pt-14">
+      <section className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] m-auto xl:mt-20 pt-14">
         <h2 className="text-gold-sand lg:text-[25px] xl:text-[50px] font-bold">Explorer</h2>
         <div className="my-4 flex w-full flex-col gap-10 md:flex-row">
           <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 md:order-1">
@@ -159,7 +160,7 @@ function App() {
         <div className="my-4 hidden xl:block">
           <Pagination size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
         </div>
-      </section>  */}
+      </section> 
     </main>
   );
 }
