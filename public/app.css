@@ -648,6 +648,10 @@ video {
   display: none;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .h-\[100vh\] {
   height: 100vh;
 }
@@ -790,12 +794,24 @@ video {
   background-image: url('/mobile-main-bg.png');
 }
 
+.bg-wave {
+  background-image: url('/wave3.png');
+}
+
+.bg-contain {
+  background-size: contain;
+}
+
 .bg-cover {
   background-size: cover;
 }
 
 .bg-center {
   background-position: center;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .p-6 {
@@ -812,10 +828,6 @@ video {
   padding-bottom: 1.25rem;
 }
 
-.pb-14 {
-  padding-bottom: 3.5rem;
-}
-
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -826,6 +838,10 @@ video {
 
 .pt-14 {
   padding-top: 3.5rem;
+}
+
+.pt-\[18\.38\%\] {
+  padding-top: 18.38%;
 }
 
 .text-center {
@@ -870,6 +886,14 @@ video {
   opacity: 0.8;
 }
 
+.outline {
+  outline-style: solid;
+}
+
+.outline-1 {
+  outline-width: 1px;
+}
+
 .filter {
   -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -880,8 +904,8 @@ video {
 }
 
 @media (min-width: 390px) {
-  .sm\:mt-\[140px\] {
-    margin-top: 140px;
+  .sm\:mt-\[25vw\] {
+    margin-top: 25vw;
   }
 
   .sm\:pt-14 {
@@ -896,10 +920,6 @@ video {
 
   .md\:mt-0 {
     margin-top: 0px;
-  }
-
-  .md\:mt-\[160px\] {
-    margin-top: 160px;
   }
 
   .md\:w-\[150px\] {
@@ -932,10 +952,6 @@ video {
 
   .md\:justify-between {
     justify-content: space-between;
-  }
-
-  .md\:self-center {
-    align-self: center;
   }
 
   .md\:px-16 {
@@ -978,12 +994,32 @@ video {
     order: 4;
   }
 
-  .lg\:mt-\[61px\] {
-    margin-top: 61px;
+  .lg\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .lg\:mt-14 {
+    margin-top: 3.5rem;
+  }
+
+  .lg\:mt-\[12vw\] {
+    margin-top: 12vw;
+  }
+
+  .lg\:mt-\[10vw\] {
+    margin-top: 10vw;
+  }
+
+  .lg\:mt-\[11vw\] {
+    margin-top: 11vw;
   }
 
   .lg\:block {
     display: block;
+  }
+
+  .lg\:flex {
+    display: flex;
   }
 
   .lg\:hidden {
@@ -998,6 +1034,10 @@ video {
     width: 400px;
   }
 
+  .lg\:w-\[413px\] {
+    width: 413px;
+  }
+
   .lg\:w-\[900px\] {
     width: 900px;
   }
@@ -1010,16 +1050,16 @@ video {
     justify-content: flex-end;
   }
 
-  .lg\:justify-center {
-    justify-content: center;
+  .lg\:self-center {
+    align-self: center;
   }
 
   .lg\:bg-main {
     background-image: url('/main-bg.png');
   }
 
-  .lg\:pt-\[30px\] {
-    padding-top: 30px;
+  .lg\:pt-\[50px\] {
+    padding-top: 50px;
   }
 
   .lg\:text-left {
@@ -1056,6 +1096,10 @@ video {
 
   .xl\:mt-\[120px\] {
     margin-top: 120px;
+  }
+
+  .xl\:mt-\[2vw\] {
+    margin-top: 2vw;
   }
 
   .xl\:block {
@@ -1124,7 +1168,7 @@ video {
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1366px) {
   .\32xl\:ml-\[45px\] {
     margin-left: 45px;
   }
@@ -1137,54 +1181,38 @@ video {
     margin-top: 1rem;
   }
 
-  .\32xl\:mt-\[20px\] {
-    margin-top: 20px;
-  }
-
   .\32xl\:mt-\[232px\] {
     margin-top: 232px;
   }
 
-  .\32xl\:w-\[1500px\] {
-    width: 1500px;
+  .\32xl\:mt-0 {
+    margin-top: 0px;
   }
 
   .\32xl\:w-\[210px\] {
     width: 210px;
   }
 
-  .\32xl\:w-\[603px\] {
-    width: 603px;
-  }
-
-  .\32xl\:w-\[640px\] {
-    width: 640px;
-  }
-
-  .\32xl\:w-\[643px\] {
-    width: 643px;
-  }
-
   .\32xl\:pt-\[58px\] {
     padding-top: 58px;
   }
-
-  .\32xl\:text-\[28px\] {
-    font-size: 28px;
-  }
-
-  .\32xl\:leading-\[40px\] {
-    line-height: 40px;
-  }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1536px) {
   .\33xl\:w-\[1101px\] {
     width: 1101px;
   }
 
-  .\33xl\:justify-start {
-    justify-content: flex-start;
+  .\33xl\:w-\[603px\] {
+    width: 603px;
+  }
+
+  .\33xl\:w-\[640px\] {
+    width: 640px;
+  }
+
+  .\33xl\:w-\[643px\] {
+    width: 643px;
   }
 
   .\33xl\:gap-\[46px\] {
@@ -1204,7 +1232,15 @@ video {
     font-size: 16px;
   }
 
+  .\33xl\:text-\[28px\] {
+    font-size: 28px;
+  }
+
   .\33xl\:text-\[80px\] {
     font-size: 80px;
+  }
+
+  .\33xl\:leading-\[40px\] {
+    line-height: 40px;
   }
 }

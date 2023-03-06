@@ -52,10 +52,10 @@ function App() {
   }, []);
 
   return (
-    <main className="App w-[100vw] h-[100vh] pb-14 bg-aztec">
+    <main className="App w-[100vw] h-[100vh] bg-aztec">
       {/* SECTION ONE */}
       <section className="bg-mobile-main lg:bg-main bg-cover bg-center h-[100vh] relative">
-        <header className="pt-10 sm:pt-14 lg:pt-[30px] 2xl:pt-[58px] px-5 md:px-16">
+        <header className="pt-10 sm:pt-14 lg:pt-[50px] 2xl:pt-[58px] px-5 md:px-16">
           <div className="flex flex-col items-center md:flex-row md:justify-between max-w-[1700px] m-auto">
             <div className="w-[150px] md:w-[150px] xl:w-[180px] 2xl:w-[210px]"><img src="teddy-logo.svg" alt="logo" /></div>
             <ul className="flex gap-5 mt-6">
@@ -66,28 +66,23 @@ function App() {
             </ul>
           </div>
         </header>
-
-        <div className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] mt-10 sm:mt-[140px] md:mt-[160px] lg:mt-[61px] xl:mt-0 2xl:mt-[20px] xl:flex lg:justify-center 2xl:w-[1500px] m-auto 3xl:justify-start">
-          <div className="lg:order-2 md:self-center">
-            <div className="lg:w-[400px] 2xl:w-[640px] m-auto">
-              <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
-            </div>
-            <h2 className="font-medium lg:w-[310px] 2xl:w-[603px] mt-10 text-center lg:text-left lg:text-base 2xl:text-[28px] 2xl:leading-[40px] text-white m-auto">
+      
+        <div className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] m-auto lg:flex justify-center mt-10 sm:mt-[25vw] lg:mt-[11vw] xl:mt-[2vw] 2xl:mt-0">
+          <div className="lg:order-2 lg:self-center lg:w-[400px] 3xl:w-[640px] lg:mt-14">
+            <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
+            <h2 className="font-medium lg:w-[310px] 3xl:w-[603px] mt-10 text-center lg:text-left lg:text-base 3xl:text-[28px] 3xl:leading-[40px] text-white m-auto">
               The TeddySwap Initial NFT Offering provides TEDY tokens, boosts yield farming, and more on the TeddySwap DEX.
             </h2>
           </div>
-          <div className="mt-8 absolute lg:relative bottom-0 w-[280px] md:w-[420px] 2xl:w-[643px] 2xl:ml-[45px] left-0 right-0 m-auto xl:mx-0">
-            <img src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />  
+          <div className="mt-8 lg:mt-0 absolute left-0 right-0 m-auto lg:relative bottom-0 w-[280px] md:w-[420px] lg:w-[413px] 3xl:w-[643px] 2xl:ml-[45px] xl:mx-0">
+            <img className="w-full" src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />
           </div>
         </div>
-
-        <div className="hidden xl:block w-full absolute bottom-0">
-          <img src="wave2.png" alt="wave design" className="w-full" />
-        </div>
+        <div className="hidden lg:block bg-wave bg-contain bg-no-repeat w-full h-0 pt-[18.38%] absolute bottom-0"></div>
       </section>
 
       {/* SECTION TWO */}
-      <section className="w-[300px] md:w-[500px] m-auto lg:w-[900px] xl:w-[1200px] pt-12">
+      {/* <section className="w-[300px] md:w-[500px] m-auto lg:w-[900px] xl:w-[1200px] pt-12">
         <h3 className="text-gold-sand text-center font-bold xl:hidden">Mint Price: 150 ADA</h3>
         <div className="mt-5 2xl:mt-14">
           <h4 className="text-gold-sand font-medium text-[14px] xl:text-[30px]">Each NFT includes</h4>
@@ -119,10 +114,10 @@ function App() {
             <li className="order-4 lg:order-4"><img src="teddy-4.png" alt="random teddy nft" /></li>
           </ul>
         </div>
-      </section>
+      </section> */}
 
       {/* SECTION THREE */}
-      <section className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] m-auto xl:mt-20 pt-14">
+      {/* <section className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] m-auto xl:mt-20 pt-14">
         <h2 className="text-gold-sand lg:text-[25px] xl:text-[50px] font-bold">Explorer</h2>
         <div className="my-4 flex w-full flex-col gap-10 md:flex-row">
           <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 md:order-1">
@@ -164,7 +159,7 @@ function App() {
         <div className="my-4 hidden xl:block">
           <Pagination size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
         </div>
-      </section> 
+      </section>  */}
     </main>
   );
 }

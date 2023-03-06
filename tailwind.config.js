@@ -6,11 +6,13 @@ module.exports = {
       'sm': "390px",
       'md': "768px",
       'lg': "1024px",
-      'xl': "1280px",
-      '2xl': "1536px",
-      '3xl': "1920px"
+      'xl': "1280px"
     },
     extend: {
+      screens: {
+        '2xl': "1366px",
+        '3xl': "1536px",
+      },
       colors: {
         'teddy-active': "#46B58D",
         'teddy-smallest': "#f44336",
@@ -21,7 +23,7 @@ module.exports = {
       },
       backgroundImage: {
         'main': "url('/main-bg.png')",
-        'wave': "url('/wave2.png')",
+        'wave': "url('/wave3.png')",
         'teddy': "url('/teddy-smirk.png')",
         'mobile-main': "url('/mobile-main-bg.png')",
       },
