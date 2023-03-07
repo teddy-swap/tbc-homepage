@@ -31,6 +31,9 @@ module.exports = {
       },
       backgroundPosition: {
         'left-bottom': "left bottom",
+      },
+      fontFamily: {
+        'montserrat': "'Montserrat', sans-serif",
       }
     },
   },

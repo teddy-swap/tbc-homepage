@@ -571,8 +571,8 @@ video {
   bottom: 0px;
 }
 
-.bottom-\[calc\(280px\+1vw\)\] {
-  bottom: calc(280px + 1vw);
+.bottom-\[calc\(155px\+13vw\)\] {
+  bottom: calc(155px + 13vw);
 }
 
 .bottom-\[calc\(311px-15vw\)\] {
@@ -589,50 +589,6 @@ video {
 
 .top-0 {
   top: 0px;
-}
-
-.bottom-\[170px\] {
-  bottom: 170px;
-}
-
-.bottom-\[calc\(150px\*1vw\)\] {
-  bottom: calc(150px * 1vw);
-}
-
-.bottom-\[calc\(150px\+1vw\)\] {
-  bottom: calc(150px + 1vw);
-}
-
-.bottom-\[calc\(150px\+4vw\)\] {
-  bottom: calc(150px + 4vw);
-}
-
-.bottom-\[calc\(150px\+8vw\)\] {
-  bottom: calc(150px + 8vw);
-}
-
-.bottom-\[calc\(150px\+10vw\)\] {
-  bottom: calc(150px + 10vw);
-}
-
-.bottom-\[calc\(150px\+14vw\)\] {
-  bottom: calc(150px + 14vw);
-}
-
-.bottom-\[calc\(150px\+13vw\)\] {
-  bottom: calc(150px + 13vw);
-}
-
-.bottom-\[calc\(130px\+13vw\)\] {
-  bottom: calc(130px + 13vw);
-}
-
-.bottom-\[calc\(160px\+13vw\)\] {
-  bottom: calc(160px + 13vw);
-}
-
-.bottom-\[calc\(155px\+13vw\)\] {
-  bottom: calc(155px + 13vw);
 }
 
 .z-\[1\] {
@@ -659,12 +615,12 @@ video {
   order: 4;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .m-0 {
   margin: 0px;
+}
+
+.m-auto {
+  margin: auto;
 }
 
 .my-4 {
@@ -698,10 +654,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .flex {
@@ -744,16 +696,12 @@ video {
   width: 280px;
 }
 
-.w-\[85\%\] {
-  width: 85%;
+.w-\[90\%\] {
+  width: 90%;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-\[90\%\] {
-  width: 90%;
 }
 
 .max-w-\[1700px\] {
@@ -835,16 +783,8 @@ video {
   gap: 2rem;
 }
 
-.place-self-center {
-  place-self: center;
-}
-
 .self-end {
   align-self: flex-end;
-}
-
-.self-center {
-  align-self: center;
 }
 
 .\!rounded-md {
@@ -934,20 +874,20 @@ video {
   padding-top: 18.38%;
 }
 
-.pt-8 {
-  padding-top: 2rem;
-}
-
-.pt-4 {
-  padding-top: 1rem;
-}
-
 .text-center {
   text-align: center;
 }
 
 .text-justify {
   text-align: justify;
+}
+
+.\!font-montserrat {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .text-\[14px\] {
@@ -962,8 +902,20 @@ video {
   font-size: 22px;
 }
 
+.text-\[28px\] {
+  font-size: 28px;
+}
+
 .text-\[8px\] {
   font-size: 8px;
+}
+
+.\!font-bold {
+  font-weight: 700 !important;
+}
+
+.font-black {
+  font-weight: 900;
 }
 
 .font-bold {
@@ -972,10 +924,6 @@ video {
 
 .font-medium {
   font-weight: 500;
-}
-
-.font-black {
-  font-weight: 900;
 }
 
 .text-gold-sand {
@@ -996,14 +944,6 @@ video {
   opacity: 0.8;
 }
 
-.outline {
-  outline-style: solid;
-}
-
-.outline-1 {
-  outline-width: 1px;
-}
-
 .filter {
   -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -1011,6 +951,12 @@ video {
 
 .App {
   overflow-y: auto;
+}
+
+@media screen and (min-width: 1280px) {
+  .css-cjctlb-MuiButtonBase-root-MuiTab-root {
+    font-size: 20px !important;
+  }
 }
 
 @media (min-width: 390px) {
@@ -1024,20 +970,12 @@ video {
 }
 
 @media (min-width: 600px) {
-  .sm\:mt-20 {
-    margin-top: 5rem;
-  }
-
   .sm\:mt-0 {
     margin-top: 0px;
   }
 
   .sm\:mt-6 {
     margin-top: 1.5rem;
-  }
-
-  .sm\:block {
-    display: block;
   }
 
   .sm\:inline-block {
@@ -1056,28 +994,12 @@ video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sm\:gap-6 {
-    gap: 1.5rem;
-  }
-
-  .sm\:gap-20 {
-    gap: 5rem;
-  }
-
   .sm\:gap-16 {
     gap: 4rem;
   }
 
-  .sm\:gap-8 {
-    gap: 2rem;
-  }
-
-  .sm\:gap-10 {
-    gap: 2.5rem;
-  }
-
-  .sm\:rounded-\[15px\] {
-    border-radius: 15px;
+  .sm\:gap-6 {
+    gap: 1.5rem;
   }
 
   .sm\:rounded-\[8px\] {
@@ -1087,10 +1009,6 @@ video {
   .sm\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
-  }
-
-  .sm\:pt-14 {
-    padding-top: 3.5rem;
   }
 
   .sm\:text-left {
@@ -1111,28 +1029,12 @@ video {
     margin-top: 10rem;
   }
 
-  .md\:block {
-    display: block;
-  }
-
-  .md\:flex {
-    display: flex;
-  }
-
-  .md\:grid {
-    display: grid;
-  }
-
   .md\:w-\[150px\] {
     width: 150px;
   }
 
   .md\:w-\[420px\] {
     width: 420px;
-  }
-
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -1147,27 +1049,6 @@ video {
     justify-content: space-between;
   }
 
-  .md\:gap-20 {
-    gap: 5rem;
-  }
-
-  .md\:gap-14 {
-    gap: 3.5rem;
-  }
-
-  .md\:gap-10 {
-    gap: 2.5rem;
-  }
-
-  .md\:gap-6 {
-    gap: 1.5rem;
-  }
-
-  .md\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
   .md\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -1176,11 +1057,6 @@ video {
   .md\:py-7 {
     padding-top: 1.75rem;
     padding-bottom: 1.75rem;
-  }
-
-  .md\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .md\:text-\[12px\] {
@@ -1233,10 +1109,6 @@ video {
     display: flex;
   }
 
-  .lg\:grid {
-    display: grid;
-  }
-
   .lg\:hidden {
     display: none;
   }
@@ -1257,20 +1129,8 @@ video {
     width: 900px;
   }
 
-  .lg\:w-\[calc\(50\%\)\] {
-    width: calc(50%);
-  }
-
-  .lg\:w-\[50\%\] {
-    width: 50%;
-  }
-
   .lg\:max-w-\[900px\] {
     max-width: 900px;
-  }
-
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-3 {
@@ -1279,10 +1139,6 @@ video {
 
   .lg\:justify-end {
     justify-content: flex-end;
-  }
-
-  .lg\:gap-20 {
-    gap: 5rem;
   }
 
   .lg\:self-center {
@@ -1306,8 +1162,8 @@ video {
     padding-bottom: 2.5rem;
   }
 
-  .lg\:pt-8 {
-    padding-top: 2rem;
+  .lg\:pt-0 {
+    padding-top: 0px;
   }
 
   .lg\:pt-\[18\.38\%\] {
@@ -1316,10 +1172,6 @@ video {
 
   .lg\:pt-\[50px\] {
     padding-top: 50px;
-  }
-
-  .lg\:pt-0 {
-    padding-top: 0px;
   }
 
   .lg\:text-left {
@@ -1345,36 +1197,8 @@ video {
     bottom: 0px;
   }
 
-  .xl\:bottom-\[calc\(150px\+3vw\)\] {
-    bottom: calc(150px + 3vw);
-  }
-
-  .xl\:bottom-\[calc\(100px\+13vw\)\] {
-    bottom: calc(100px + 13vw);
-  }
-
-  .xl\:bottom-\[calc\(50px\+13vw\)\] {
-    bottom: calc(50px + 13vw);
-  }
-
   .xl\:bottom-\[calc\(20px\+13vw\)\] {
     bottom: calc(20px + 13vw);
-  }
-
-  .xl\:bottom-\[calc\(30px\+13vw\)\] {
-    bottom: calc(30px + 13vw);
-  }
-
-  .xl\:bottom-\[calc\(25px\+13vw\)\] {
-    bottom: calc(25px + 13vw);
-  }
-
-  .xl\:bottom-\[calc\(15px\+13vw\)\] {
-    bottom: calc(15px + 13vw);
-  }
-
-  .xl\:bottom-\[calc\(12px\+13vw\)\] {
-    bottom: calc(12px + 13vw);
   }
 
   .xl\:mx-0 {
@@ -1422,16 +1246,8 @@ video {
     gap: 2.5rem;
   }
 
-  .xl\:gap-40 {
-    gap: 10rem;
-  }
-
   .xl\:gap-\[35px\] {
     gap: 35px;
-  }
-
-  .xl\:gap-20 {
-    gap: 5rem;
   }
 
   .xl\:bg-transparent {
@@ -1441,6 +1257,15 @@ video {
   .xl\:py-14 {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
+  }
+
+  .xl\:py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .xl\:pt-12 {
+    padding-top: 3rem;
   }
 
   .xl\:text-\[28px\] {
@@ -1458,17 +1283,13 @@ video {
   .xl\:text-\[50px\] {
     font-size: 50px;
   }
+
+  .xl\:text-\[25px\] {
+    font-size: 25px;
+  }
 }
 
 @media (min-width: 1366px) {
-  .\32xl\:bottom-\[calc\(145px\+3vw\)\] {
-    bottom: calc(145px + 3vw);
-  }
-
-  .\32xl\:bottom-\[calc\(12px\+13vw\)\] {
-    bottom: calc(12px + 13vw);
-  }
-
   .\32xl\:bottom-\[calc\(10px\+13vw\)\] {
     bottom: calc(10px + 13vw);
   }
@@ -1529,26 +1350,6 @@ video {
 }
 
 @media (min-width: 1920px) {
-  .\34xl\:bottom-\[calc\(215px\+3vw\)\] {
-    bottom: calc(215px + 3vw);
-  }
-
-  .\34xl\:bottom-\[calc\(20px\+13vw\)\] {
-    bottom: calc(20px + 13vw);
-  }
-
-  .\34xl\:bottom-\[calc\(30px\+13vw\)\] {
-    bottom: calc(30px + 13vw);
-  }
-
-  .\34xl\:bottom-\[calc\(35px\+13vw\)\] {
-    bottom: calc(35px + 13vw);
-  }
-
-  .\34xl\:bottom-\[calc\(25px\+13vw\)\] {
-    bottom: calc(25px + 13vw);
-  }
-
   .\34xl\:bottom-\[calc\(18px\+13vw\)\] {
     bottom: calc(18px + 13vw);
   }
@@ -1569,18 +1370,9 @@ video {
     border-radius: 25px;
   }
 
-  .\34xl\:bg-aztec {
-    --tw-bg-opacity: 1;
-    background-color: rgb(12 25 31 / var(--tw-bg-opacity));
-  }
-
   .\34xl\:py-\[66px\] {
     padding-top: 66px;
     padding-bottom: 66px;
-  }
-
-  .\34xl\:pt-\[80px\] {
-    padding-top: 80px;
   }
 
   .\34xl\:pt-\[100px\] {
@@ -1589,5 +1381,9 @@ video {
 
   .\34xl\:text-\[80px\] {
     font-size: 80px;
+  }
+
+  .\34xl\:text-\[60px\] {
+    font-size: 60px;
   }
 }
