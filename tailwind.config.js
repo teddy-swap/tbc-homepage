@@ -11,7 +11,8 @@ module.exports = {
     extend: {
       screens: {
         '2xl': "1366px",
-        '3xl': "1536px",
+        '3xl': "1440px",
+        '4xl': "1920px",
       },
       colors: {
         'teddy-active': "#46B58D",

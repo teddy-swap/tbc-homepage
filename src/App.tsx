@@ -52,7 +52,7 @@ function App() {
   }, []);
 
   return (
-    <main className="App w-[100vw] h-[100vh] pb-14 bg-aztec">
+    <main className="App w-[100vw] h-[100vh] bg-aztec">
       {/* SECTION ONE */}
       <section className="bg-mobile-main lg:bg-main bg-cover bg-center h-[100vh] relative">
         <header className="pt-10 sm:pt-14 lg:pt-[50px] 2xl:pt-[58px] px-5 md:px-16">
@@ -67,18 +67,22 @@ function App() {
           </div>
         </header>
       
-        <div className="w-[300px] md:w-[500px] lg:w-[900px] xl:w-[1200px] m-auto lg:flex justify-center mt-10 sm:mt-[25vw] lg:mt-[11vw] xl:mt-[2vw] 2xl:mt-0">
-          <div className="lg:order-2 lg:self-center lg:w-[400px] 3xl:w-[640px] lg:mt-14">
-            <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
-            <h2 className="font-medium lg:w-[310px] 3xl:w-[603px] mt-10 text-center lg:text-left lg:text-base 3xl:text-[28px] 3xl:leading-[40px] text-white m-auto">
-              The TeddySwap Initial NFT Offering provides TEDY tokens, boosts yield farming, and more on the TeddySwap DEX.
-            </h2>
+        <div className="z-[2] lg:pt-[18.38%] w-full lg:absolute bottom-0 xl:bg-transparent">
+          <div className="z-[1] px-6 lg:p-0 max-w-[500px] lg:max-w-[900px] 2xl:max-w-[1200px] m-auto lg:flex lg:absolute bottom-[calc(290px+.5vw)] xl:bottom-[calc(150px+3vw)] 4xl:bottom-[calc(215px+3vw)] left-0 right-0 justify-center mt-10 sm:mt-20 md:mt-48 2xl:mt-0">
+            <div className="lg:order-2 lg:self-center lg:w-[400px] 3xl:w-[640px] lg:mt-14">
+              <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
+              <h2 className="font-medium px-4 lg:w-[90%] mt-10 text-center lg:text-left lg:text-base 3xl:text-[24px] 3xl:leading-[35px] text-white m-auto">
+                The TeddySwap Initial NFT Offering provides TEDY tokens, boosts yield farming, and more on the TeddySwap DEX.
+              </h2>
+            </div>
+            <div className="mt-8 lg:mt-0 absolute left-0 right-0 m-auto lg:relative bottom-0 w-[280px] md:w-[420px] lg:w-[413px] 3xl:w-[643px] 2xl:ml-[45px] xl:mx-0">
+              <img className="w-full" src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />
+            </div>
           </div>
-          <div className="mt-8 lg:mt-0 absolute left-0 right-0 m-auto lg:relative bottom-0 w-[280px] md:w-[420px] lg:w-[413px] 3xl:w-[643px] 2xl:ml-[45px] xl:mx-0">
-            <img className="w-full" src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />
-          </div>
+          <div className="hidden lg:block bg-wave bg-contain bg-no-repeat w-full pt-[18.38%] absolute bottom-[calc(311px-15vw)] xl:bottom-0 z-[2]"></div>
+          <div className="hidden lg:block h-[calc(315px-15vw)] bg-aztec xl:hidden"></div>
         </div>
-        <div className="hidden lg:block bg-wave bg-contain bg-no-repeat w-full h-0 pt-[18.38%] absolute bottom-0"></div>
+
       </section>
 
       {/* SECTION TWO */}
