@@ -52,10 +52,10 @@ function App() {
           <div className="flex flex-col items-center md:flex-row md:justify-between max-w-[1700px] m-auto">
             <div className="w-[150px] md:w-[150px] xl:w-[180px] 2xl:w-[210px]"><img src="teddy-logo.svg" alt="logo" /></div>
             <ul className="flex gap-5 mt-6 md:mt-0">
-              <li className="w-[25px]"><a href="https://twitter.com/TeddySwap"><img src="twitter.svg" alt="twitter icon" /></a></li>
-              <li className="w-[25px]"><a href="https://t.me/teddyswap"><img src="telegram.svg" alt="telegram icon" /></a></li>
-              <li className="w-[25px]"><a href="https://discord.gg/GRvcAnqtZG"><img src="discord.svg" alt="discord icon" /></a></li>
-              <li className="w-[25px]"><a href="https://medium.com/@TeddySwapDEX"><img src="medium.svg" alt="medium icon" /></a></li>
+              <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
+              <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
+              <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
+              <li className="w-[25px]"><a target="_blank" href="https://medium.com/@TeddySwapDEX" rel="noreferrer"><img src="medium.svg" alt="medium icon" /></a></li>
             </ul>
           </div>
         </header>
@@ -121,7 +121,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                  As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 30,000 TEDY tokens. To learn more, check out our <a className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date">article</a>.
+                  As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 30,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <ul className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0">
@@ -209,7 +209,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                    As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2">article</a>.
+                    As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <ul className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0">
@@ -225,7 +225,7 @@ function App() {
             <section className="xl:mt-20 pt-14 w-full">
               <div className="grow text-center text-gold-sand">
                 <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting Soon</p>
-                <p>Visit the minting website at this <a className="underline" href="https://teddyswap.peppermintnft.io/">link</a></p>
+                <p>Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a></p>
               </div>
             </section>
           </TabPanel>
