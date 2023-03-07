@@ -663,6 +663,10 @@ video {
   margin: auto;
 }
 
+.m-0 {
+  margin: 0px;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -823,6 +827,10 @@ video {
   gap: 2rem;
 }
 
+.place-self-center {
+  place-self: center;
+}
+
 .self-end {
   align-self: flex-end;
 }
@@ -950,6 +958,10 @@ video {
   font-weight: 500;
 }
 
+.font-black {
+  font-weight: 900;
+}
+
 .text-gold-sand {
   --tw-text-opacity: 1;
   color: rgb(231 197 150 / var(--tw-text-opacity));
@@ -958,6 +970,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .opacity-80 {
@@ -1000,6 +1016,10 @@ video {
     margin-top: 0px;
   }
 
+  .sm\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .sm\:flex {
     display: flex;
   }
@@ -1020,6 +1040,18 @@ video {
     gap: 5rem;
   }
 
+  .sm\:gap-16 {
+    gap: 4rem;
+  }
+
+  .sm\:rounded-\[15px\] {
+    border-radius: 15px;
+  }
+
+  .sm\:rounded-\[8px\] {
+    border-radius: 8px;
+  }
+
   .sm\:px-12 {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -1027,6 +1059,10 @@ video {
 
   .sm\:pt-14 {
     padding-top: 3.5rem;
+  }
+
+  .sm\:text-left {
+    text-align: left;
   }
 }
 
@@ -1104,6 +1140,11 @@ video {
   .md\:py-7 {
     padding-top: 1.75rem;
     padding-bottom: 1.75rem;
+  }
+
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .md\:text-\[12px\] {
@@ -1349,6 +1390,10 @@ video {
     gap: 35px;
   }
 
+  .xl\:gap-20 {
+    gap: 5rem;
+  }
+
   .xl\:bg-transparent {
     background-color: transparent;
   }
@@ -1378,6 +1423,14 @@ video {
 @media (min-width: 1366px) {
   .\32xl\:bottom-\[calc\(145px\+3vw\)\] {
     bottom: calc(145px + 3vw);
+  }
+
+  .\32xl\:bottom-\[calc\(12px\+13vw\)\] {
+    bottom: calc(12px + 13vw);
+  }
+
+  .\32xl\:bottom-\[calc\(10px\+13vw\)\] {
+    bottom: calc(10px + 13vw);
   }
 
   .\32xl\:ml-\[45px\] {
@@ -1464,6 +1517,10 @@ video {
     width: 50%;
   }
 
+  .\34xl\:w-\[90\%\] {
+    width: 90%;
+  }
+
   .\34xl\:max-w-\[1700\] {
     max-width: 1700;
   }
@@ -1480,6 +1537,14 @@ video {
   .\34xl\:py-\[66px\] {
     padding-top: 66px;
     padding-bottom: 66px;
+  }
+
+  .\34xl\:pt-\[80px\] {
+    padding-top: 80px;
+  }
+
+  .\34xl\:pt-\[100px\] {
+    padding-top: 100px;
   }
 
   .\34xl\:text-\[80px\] {
