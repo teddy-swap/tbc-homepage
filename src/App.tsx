@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardMedia, CardActions, Button, Avatar, Pagination, TextField } from '@mui/material';
+import { Card, CardHeader, CardMedia, CardActions, Button, Avatar, Pagination, TextField, Tab, Tabs } from '@mui/material';
 import { Search, WalletOutlined } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import Image from 'rc-image';
@@ -58,7 +58,7 @@ function App() {
         <header className="pt-10 xs:pt-14 lg:pt-[50px] 2xl:pt-[58px] px-5 md:px-16">
           <div className="flex flex-col items-center md:flex-row md:justify-between max-w-[1700px] m-auto">
             <div className="w-[150px] md:w-[150px] xl:w-[180px] 2xl:w-[210px]"><img src="teddy-logo.svg" alt="logo" /></div>
-            <ul className="flex gap-5 mt-6">
+            <ul className="flex gap-5 mt-6 md:mt-0">
               <li className="w-[25px]"><a href="https://twitter.com/TeddySwap"><img src="twitter.svg" alt="twitter icon" /></a></li>
               <li className="w-[25px]"><a href="https://t.me/teddyswap"><img src="telegram.svg" alt="telegram icon" /></a></li>
               <li className="w-[25px]"><a href="https://discord.gg/GRvcAnqtZG"><img src="discord.svg" alt="discord icon" /></a></li>
@@ -66,23 +66,22 @@ function App() {
             </ul>
           </div>
         </header>
-      
+
         <div className="z-[2] lg:pt-[18.38%] w-full lg:absolute bottom-0 xl:bg-transparent">
-          <div className="z-[1] px-6 lg:p-0 max-w-[500px] lg:max-w-[900px] 2xl:max-w-[1200px] m-auto lg:flex lg:absolute bottom-[calc(280px+1vw)] xl:bottom-[calc(150px+3vw)] 2xl:bottom-[calc(145px+3vw)] 4xl:bottom-[calc(215px+3vw)] left-0 right-0 justify-center mt-10 xs:mt-20 md:mt-40 2xl:mt-0">
+          <div className="z-[1] px-6 lg:p-0 max-w-[500px] lg:max-w-[900px] 2xl:max-w-[1200px] 4xl:max-w-[1700] m-auto lg:flex lg:absolute bottom-[calc(155px+13vw)] xl:bottom-[calc(20px+13vw)] xl:bottom-[calc(12px+13vw)] 4xl:bottom-[calc(18px+13vw)] left-0 right-0 justify-center mt-10 xs:mt-20 md:mt-40 2xl:mt-0">
             <div className="lg:order-2 lg:self-center lg:w-[400px] 3xl:w-[640px] lg:mt-14">
               <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
               <h2 className="font-medium px-4 lg:w-[90%] mt-10 text-center lg:text-left lg:text-base 3xl:text-[24px] 3xl:leading-[35px] text-white m-auto">
                 The TeddySwap Initial NFT Offering provides TEDY tokens, boosts yield farming, and more on the TeddySwap DEX.
               </h2>
             </div>
-            <div className="mt-8 lg:mt-0 absolute left-0 right-0 m-auto lg:relative bottom-0 w-[280px] md:w-[420px] lg:w-[413px] 3xl:w-[643px] 2xl:ml-[45px] xl:mx-0">
+            <div className="mt-8 lg:mt-0 absolute left-0 right-0 m-auto lg:relative bottom-0 w-[280px] md:w-[420px] lg:w-[413px] 3xl:w-[643px] 4xl:w-1/2 2xl:ml-[45px] xl:mx-0">
               <img className="w-full" src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />
             </div>
           </div>
           <div className="hidden lg:block bg-wave bg-contain bg-no-repeat w-full pt-[18.38%] absolute bottom-[calc(311px-15vw)] xl:bottom-0 z-[2]"></div>
           <div className="hidden lg:block h-[calc(315px-15vw)] bg-aztec xl:hidden"></div>
         </div>
-
       </section>
 
       {/* SECTION TWO */}
@@ -103,8 +102,8 @@ function App() {
           </ul>
         </div>
 
-        <div className="mt-16 xl:mt-[120px] 2xl:mt-[232px] lg:flex items-center justify-between lg:gap-20 xl:gap-40">
-          <div className=" grow text-white text-justify order-2 xl:w-[514px] font-bold xl:text-[28px]">
+        <div className="mt-16 xl:mt-[120px] 2xl:mt-[232px] sm:flex items-center justify-between sm:gap-20 xl:gap-40">
+          <div className="grow text-white text-justify order-2 xl:w-[514px] font-bold xl:text-[28px]">
             <p>
               The Teddy Bears Club is a limited NFT collection that provides utility to users of TeddySwap, the coziest stable-coin DEX on Cardano. Join the Teddy Bears Club and earn TEDY tokens.
             </p>
@@ -112,7 +111,7 @@ function App() {
               Members of the The Teddy Bears Club will receive 20,00 to 30,00 TEDY tokens  To learn more, check out our medium.
             </p>
           </div>
-          <ul className="hidden grow lg:grid grid-cols-1 lg:grid-cols-2 order-1 m-auto gap-8 xl:gap-10 mt-20 lg:mt-0">
+          <ul className="hidden grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0 self-center">
             <li className="order-2 lg:order-1"><img src="teddy-1.png" alt="random teddy nft" /></li>
             <li className="order-3 lg:order-2"><img src="teddy-2.png" alt="random teddy nft" /></li>
             <li className="order-1 lg:order-3"><img src="teddy-3.png" alt="random teddy nft" /></li>
