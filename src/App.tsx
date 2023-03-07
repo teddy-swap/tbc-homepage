@@ -5,7 +5,6 @@ import { useEffect, useState, SyntheticEvent } from 'react';
 import Image from 'rc-image';
 import SyncIcon from '@mui/icons-material/Sync';
 
-
 type RankedTeddyBearAsset = {
   rarityRank: string,
   url: string,
@@ -38,6 +37,11 @@ function App() {
     }
 
     loadAssets();
+    
+    (window as any).particlesJS.load('section-1', '/particle-config.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
+
   }, []);
 
   const switchTab = (event: SyntheticEvent, newTabPage: string) => {
@@ -47,15 +51,15 @@ function App() {
   return (
     <main className="App w-[100vw] h-[100vh] pb-14 bg-aztec">
       {/* SECTION ONE */}
-      <section className="bg-mobile-main lg:bg-main bg-cover bg-center h-[100vh] relative">
-        <header className="pt-10 xs:pt-14 lg:pt-[50px] 2xl:pt-[58px] 4xl:pt-[100px] px-5 md:px-16">
+      <section id="section-1" className="bg-mobile-main lg:bg-main bg-cover bg-center h-[100vh] relative">
+        <header className="pt-10 xs:pt-14 lg:pt-[50px] 2xl:pt-[20px] 4xl:pt-[20px] px-5 md:px-16 lg:absolute lg:z-[2] lg:w-full">
           <div className="flex flex-col items-center md:flex-row md:justify-between max-w-[1700px] m-auto">
             <div className="w-[150px] md:w-[150px] xl:w-[180px] 2xl:w-[210px]"><img src="teddy-logo.svg" alt="logo" /></div>
             <ul className="flex gap-5 mt-6 md:mt-0">
               <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
               <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
               <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
-              <li className="w-[25px]"><a target="_blank" href="https://medium.com/@TeddySwapDEX" rel="noreferrer"><img src="medium.svg" alt="medium icon" /></a></li>
+              <li className="w-[25px]"><a target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer"><img src="medium.svg" alt="medium icon" /></a></li>
             </ul>
           </div>
         </header>
