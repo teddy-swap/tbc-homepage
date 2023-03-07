@@ -5,3 +5,9 @@
 .App {
   overflow-y: auto;
 }
+
+@media screen and (min-width: 1280px) {
+  .css-cjctlb-MuiButtonBase-root-MuiTab-root {
+    font-size: 20px !important;
+  }
+}
