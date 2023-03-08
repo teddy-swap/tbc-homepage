@@ -59,7 +59,7 @@ function App() {
               <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
               <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
               <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
-              <li className="w-[25px]"><a target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer"><img src="medium.svg" alt="medium icon" /></a></li>
+              <li className="w-[25px] p-[5px] bg-white rounded-[4px]"><a target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer"><img src="teddy-icon.png" alt="Teddy bear face icon. Icon made by Vector Stall from flaticon.com" /></a></li>
             </ul>
           </div>
         </header>
@@ -137,7 +137,7 @@ function App() {
               </div>
             </section>
             {/* SECTION THREE */}
-            <section className="xl:mt-20 pt-14">
+            {/* <section className="xl:mt-20 pt-14">
               <h2 className="text-gold-sand lg:text-[25px] xl:text-[50px] font-bold">Explorer</h2>
               <div className="my-4 flex w-full flex-col gap-10 md:flex-row justify-between">
                 <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 md:order-1">
@@ -181,7 +181,7 @@ function App() {
                 <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
               </div>
-            </section>
+            </section> */}
           </TabPanel>
           {/* ROUND TWO */}
           <TabPanel sx={{padding: '0'}} value="2">
