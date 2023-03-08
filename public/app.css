@@ -1277,6 +1277,10 @@ video {
     bottom: calc(20px + 13vw);
   }
 
+  .xl\:order-1 {
+    order: 1;
+  }
+
   .xl\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
@@ -1292,6 +1296,10 @@ video {
 
   .xl\:mt-\[120px\] {
     margin-top: 120px;
+  }
+
+  .xl\:block {
+    display: block;
   }
 
   .xl\:hidden {
@@ -1312,6 +1320,10 @@ video {
 
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:flex-row {
+    flex-direction: row;
   }
 
   .xl\:gap-10 {

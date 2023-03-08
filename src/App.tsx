@@ -137,13 +137,13 @@ function App() {
               </div>
             </section>
             {/* SECTION THREE */}
-            {/* <section className="xl:mt-20 pt-14">
+            <section className="xl:mt-20 pt-14">
               <h2 className="text-gold-sand lg:text-[25px] xl:text-[50px] font-bold">Explorer</h2>
-              <div className="my-4 flex w-full flex-col gap-10 md:flex-row justify-between">
-                <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 md:order-1">
+              <div className="my-4 flex w-full flex-col gap-10 xl:flex-row justify-between">
+                <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 xl:order-1">
                     <TextField id="outlined-basic" label="Search" variant="outlined" size="small" fullWidth InputProps={{ endAdornment: <Search /> }} value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
-                <div className="flex w-full ">
+                <div className="flex w-full">
                   <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                   <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 </div>
@@ -181,7 +181,7 @@ function App() {
                 <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
               </div>
-            </section> */}
+            </section>
           </TabPanel>
           {/* ROUND TWO */}
           <TabPanel sx={{padding: '0'}} value="2">
