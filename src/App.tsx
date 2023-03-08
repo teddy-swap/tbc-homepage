@@ -1,4 +1,4 @@
-import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs , Box } from '@mui/material';
+import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs, Box } from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { Search } from '@mui/icons-material';
 import { useEffect, useState, SyntheticEvent } from 'react';
@@ -37,8 +37,8 @@ function App() {
     }
 
     loadAssets();
-    
-    (window as any).particlesJS.load('section-1', '/particle-config.json', function() {
+
+    (window as any).particlesJS.load('section-1', '/particle-config.json', function () {
       console.log('callback - particles.js config loaded');
     });
 
@@ -87,18 +87,18 @@ function App() {
             <Tabs
               value={tabPage}
               onChange={switchTab}
-              sx={{color: '#E7C596', }}
+              sx={{ color: '#E7C596', }}
               textColor="inherit"
               indicatorColor="secondary"
               aria-label="secondary tabs example"
-              TabIndicatorProps={ {style: { background: '#E7C596' }} }
+              TabIndicatorProps={{ style: { background: '#E7C596' } }}
             >
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="1" label="Round One" />
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="2" label="Round Two" />
             </Tabs>
           </Box>
           {/* ROUND ONE */}
-          <TabPanel sx={{padding: '0'}} value="1">
+          <TabPanel sx={{ padding: '0' }} value="1">
             {/* SECTION TWO */}
             <section>
               <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px] mt-8">Mint Price: 350 ADA</h3>
@@ -161,7 +161,7 @@ function App() {
                         />
                       </div>
                       <CardHeader
-                        sx={{display: 'flex', flexDirection: 'column', gap: '5px', textAlign: 'center', justifyContent: 'center', "> div": { marginRight: '0' }}}
+                        sx={{ display: 'flex', flexDirection: 'column', gap: '5px', textAlign: 'center', justifyContent: 'center', "> div": { marginRight: '0' } }}
                         avatar={
                           <Avatar sx={{ bgcolor: 'rgb(102 167 242)', color: "#FFF" }} aria-label="recipe">
                             {(ASSETS_PER_PAGE * (page - 1)) + i + 1}
@@ -184,7 +184,7 @@ function App() {
             </section>
           </TabPanel>
           {/* ROUND TWO */}
-          <TabPanel sx={{padding: '0'}} value="2">
+          <TabPanel sx={{ padding: '0' }} value="2">
             {/* SECTION TWO */}
             <section>
               <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px] mt-8">Mint Price: 150 ADA</h3>
@@ -229,8 +229,10 @@ function App() {
             {/* SECTION THREE */}
             <section className="xl:mt-20 pt-14 w-full">
               <div className="grow text-center text-gold-sand">
-                <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting Soon</p>
-                <p>Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a></p>
+                <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting March 8th, 2023 at 5PM UTC</p>
+                <p>
+                  Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a>
+                </p>
               </div>
             </section>
           </TabPanel>

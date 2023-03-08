@@ -15,6 +15,9 @@ const theme = createTheme({
       primary: "#FFF",
     }
   },
+  typography: {
+    fontFamily: "Montserrat"
+  }
 });
 
 root.render(
