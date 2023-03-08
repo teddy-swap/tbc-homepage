@@ -59,7 +59,7 @@ function App() {
               <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
               <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
               <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
-              <li className="w-[25px] p-[5px] bg-white rounded-[4px]"><a target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer"><img src="teddy-icon.png" alt="Teddy bear face icon. Icon made by Vector Stall from flaticon.com" /></a></li>
+              <li className="w-[25px] rounded-[4px] overflow-hidden"><a target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer"><img src="teddy-icon.png" alt="Teddy bear face icon. Icon made by Vector Stall from flaticon.com" /></a></li>
             </ul>
           </div>
         </header>
