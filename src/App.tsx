@@ -230,7 +230,7 @@ function App() {
               <div className="grow text-center text-gold-sand">
                 <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting March 8th, 2023 at 5PM UTC</p>
                 <p>
-                  Visit the minting website at this <a target="_blank" className="underline" href="/" rel="noreferrer">link</a>
+                  Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a>
                 </p>
               </div>
             </section>
