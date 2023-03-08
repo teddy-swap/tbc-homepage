@@ -1,4 +1,4 @@
-import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs , Box } from '@mui/material';
+import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs, Box } from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { Search } from '@mui/icons-material';
 import { useEffect, useState, SyntheticEvent } from 'react';
@@ -37,8 +37,8 @@ function App() {
     }
 
     loadAssets();
-    
-    (window as any).particlesJS.load('section-1', '/particle-config.json', function() {
+
+    (window as any).particlesJS.load('section-1', '/particle-config.json', function () {
       console.log('callback - particles.js config loaded');
     });
 
@@ -69,7 +69,7 @@ function App() {
             <div className="lg:order-2 lg:self-center lg:w-[400px] 3xl:w-[640px] lg:mt-14">
               <img src="teddybearclub-logo.png" alt="teddy bear club logo" />
               <h2 className="font-medium px-4 lg:w-[90%] mt-2 sm:mt-6 text-justify lg:text-left lg:text-base 3xl:text-[24px] 3xl:leading-[35px] text-white m-auto">
-                The TeddySwap Initial NFT Offering is your gateway to acquiring TEDY tokens, boosting your yield farming profits, and accessing exclusive benefits that are only available to members of the Teddy Bears Club NFT collection. 
+                The TeddySwap Initial NFT Offering is the gateway for acquiring TEDY tokens, boosting yield farming rewards, and accessing exclusive benefits that are only available to members of the Teddy Bears Club.
               </h2>
             </div>
             <div className="mt-8 lg:mt-0 absolute left-0 right-0 m-auto lg:relative bottom-0 w-[280px] md:w-[420px] lg:w-[413px] 3xl:w-[643px] 4xl:w-1/2 2xl:ml-[45px] xl:mx-0">
@@ -87,18 +87,18 @@ function App() {
             <Tabs
               value={tabPage}
               onChange={switchTab}
-              sx={{color: '#E7C596', }}
+              sx={{ color: '#E7C596', }}
               textColor="inherit"
               indicatorColor="secondary"
               aria-label="secondary tabs example"
-              TabIndicatorProps={ {style: { background: '#E7C596' }} }
+              TabIndicatorProps={{ style: { background: '#E7C596' } }}
             >
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="1" label="Round One" />
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="2" label="Round Two" />
             </Tabs>
           </Box>
           {/* ROUND ONE */}
-          <TabPanel sx={{padding: '0'}} value="1">
+          <TabPanel sx={{ padding: '0' }} value="1">
             {/* SECTION TWO */}
             <section>
               <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px] mt-8">Mint Price: 350 ADA</h3>
@@ -125,7 +125,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                  As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 30,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date" rel="noreferrer">article</a>.
+                    As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 30,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <ul className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0">
@@ -141,7 +141,7 @@ function App() {
               <h2 className="text-gold-sand lg:text-[25px] xl:text-[50px] font-bold">Explorer</h2>
               <div className="my-4 flex w-full flex-col gap-10 md:flex-row justify-between">
                 <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 md:order-1">
-                    <TextField id="outlined-basic" label="Search" variant="outlined" size="small" fullWidth InputProps={{ endAdornment: <Search /> }} value={search} onChange={(e) => setSearch(e.target.value)} />
+                  <TextField id="outlined-basic" label="Search" variant="outlined" size="small" fullWidth InputProps={{ endAdornment: <Search /> }} value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
                 <div className="flex w-full ">
                   <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
@@ -161,7 +161,7 @@ function App() {
                         />
                       </div>
                       <CardHeader
-                        sx={{display: 'flex', flexDirection: 'column', gap: '5px', textAlign: 'center', justifyContent: 'center', "> div": { marginRight: '0' }}}
+                        sx={{ display: 'flex', flexDirection: 'column', gap: '5px', textAlign: 'center', justifyContent: 'center', "> div": { marginRight: '0' } }}
                         avatar={
                           <Avatar sx={{ bgcolor: 'rgb(102 167 242)', color: "#FFF" }} aria-label="recipe">
                             {(ASSETS_PER_PAGE * (page - 1)) + i + 1}
@@ -183,7 +183,7 @@ function App() {
             </section>
           </TabPanel>
           {/* ROUND TWO */}
-          <TabPanel sx={{padding: '0'}} value="2">
+          <TabPanel sx={{ padding: '0' }} value="2">
             {/* SECTION TWO */}
             <section>
               <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px] mt-8">Mint Price: 150 ADA</h3>
@@ -228,8 +228,10 @@ function App() {
             {/* SECTION THREE */}
             <section className="xl:mt-20 pt-14 w-full">
               <div className="grow text-center text-gold-sand">
-                <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting Soon</p>
-                <p>Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a></p>
+                <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting March 8th, 2023 at 5PM UTC</p>
+                <p>
+                  Visit the minting website at this <a target="_blank" className="underline" href="/" rel="noreferrer">link</a>
+                </p>
               </div>
             </section>
           </TabPanel>
