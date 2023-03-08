@@ -949,6 +949,10 @@ video {
           filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .App {
   overflow-y: auto;
 }
@@ -1023,14 +1027,6 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:absolute {
-    position: absolute;
-  }
-
-  .md\:z-\[2\] {
-    z-index: 2;
-  }
-
   .md\:order-1 {
     order: 1;
   }
@@ -1049,10 +1045,6 @@ video {
 
   .md\:w-\[420px\] {
     width: 420px;
-  }
-
-  .md\:w-full {
-    width: 100%;
   }
 
   .md\:flex-row {

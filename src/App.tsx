@@ -109,13 +109,13 @@ function App() {
                     Up to 30,000 TEDY
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
-                    +5% FISO Rewards <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +5% FISO Rewards
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
-                    +1% LBE Bonus <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +1% LBE Bonus
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
-                    +1% on Yield Farming <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +1% on Yield Farming
                   </li>
                 </ul>
               </div>
@@ -194,16 +194,16 @@ function App() {
                     Up to 7,000 TEDY
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
-                    +2% FISO Rewards <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +2% FISO Rewards
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
-                    +0.4% LBE Bonus <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +0.4% LBE Bonus 
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
-                    +0.4% on Yield Farming <span className="text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +0.4% on Yield Farming 
                   </li>
                   <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] rounded sm:rounded-[8px] lg:rounded-[15px] 4xl:rounded-[25px] py-5 md:py-7 lg:py-10 xl:py-14 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
-                    +2% Incentivized Testnet <span className="hidden sm:inline-block text-[8px] md:text-[12px] 3xl:text-[16px]">*per NFT</span>
+                    +2% Incentivized Testnet
                   </li>
                 </ul>
               </div>
