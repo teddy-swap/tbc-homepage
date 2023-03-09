@@ -1,4 +1,4 @@
-import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs, Box } from '@mui/material';
+import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs, Box, Paper } from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { Search } from '@mui/icons-material';
 import { useEffect, useState, SyntheticEvent } from 'react';
@@ -76,7 +76,7 @@ function App() {
               <img className="w-full" src="teddy-smirk.png" alt="A cartoon teddy bear smirking" />
             </div>
           </div>
-          <div className="hidden lg:block bg-wave bg-contain bg-no-repeat w-full pt-[18.38%] absolute bottom-[calc(311px-15vw)] xl:bottom-[-1px] z-[11]"></div>
+          <div className="hidden lg:block bg-wave bg-contain bg-no-repeat w-full pt-[18.4%] absolute bottom-[calc(311px-15vw)] xl:bottom-[-2px] z-[11]"></div>
           <div className="hidden lg:block h-[calc(315px-15vw)] bg-aztec xl:hidden"></div>
         </div>
       </section>
@@ -104,20 +104,23 @@ function App() {
               <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px] mt-8">Mint Price: 350 ADA</h3>
               <div className="mt-5 lg:mt-14">
                 <h4 className="text-gold-sand font-medium text-[14px] lg:text-[18px] xl:text-[30px]">Each NFT includes</h4>
-                <ul className="text-gold-sand flex flex-col gap-4 sm:gap-6 xl:gap-[35px] 3xl:gap-[46px] mt-2 2xl:mt-4">
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] rounded sm:rounded-[8px] lg:rounded-[15px] 4xl:rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
+                <div className="flex flex-col gap-4 sm:gap-6 xl:gap-[35px] 3xl:gap-[46px] mt-2 2xl:mt-4">
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
                     Up to 30,800 TEDY
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
                     +5% FISO Rewards
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
                     +1% LBE Bonus
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
                     +1% on Yield Farming
-                  </li>
-                </ul>
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
+                    +5% Incentivized Testnet
+                  </Card>
+                </div>
               </div>
               <div className="mt-16 xl:mt-[120px] 2xl:mt-[232px] sm:flex items-center justify-between sm:gap-16">
                 <div className="grow text-white text-justify sm:text-left order-2 xl:w-[514px] font-bold xl:text-[25px]">
@@ -128,12 +131,12 @@ function App() {
                   As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 30,800 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date" rel="noreferrer">article</a>.
                   </p>
                 </div>
-                <ul className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0">
-                  <li className="order-2 lg:order-1"><img src="teddy-1.png" alt="random teddy nft" /></li>
-                  <li className="order-3 lg:order-2"><img src="teddy-2.png" alt="random teddy nft" /></li>
-                  <li className="order-1 lg:order-3"><img src="teddy-3.png" alt="random teddy nft" /></li>
-                  <li className="order-4 lg:order-4"><img src="teddy-4.png" alt="random teddy nft" /></li>
-                </ul>
+                <div className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0"> 
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-2 lg:order-1"><img src="teddy-1.png" alt="random teddy nft" /></Card>
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-3 lg:order-2"><img src="teddy-2.png" alt="random teddy nft" /></Card>
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-1 lg:order-3"><img src="teddy-3.png" alt="random teddy nft" /></Card>
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-4 lg:order-4"><img src="teddy-4.png" alt="random teddy nft" /></Card>
+                </div>
               </div>
             </section>
             {/* SECTION THREE */}
@@ -190,23 +193,23 @@ function App() {
               <h3 className="text-gold-sand text-center font-bold text-[20px] xl:text-[32px] mt-8">Mint Price: 150 ADA</h3>
               <div className="mt-5 lg:mt-14">
                 <h4 className="text-gold-sand font-medium text-[14px] lg:text-[18px] xl:text-[30px]">Each NFT includes</h4>
-                <ul className="text-gold-sand flex flex-col gap-4 sm:gap-6 xl:gap-[35px] 3xl:gap-[46px] mt-2 2xl:mt-4">
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] rounded sm:rounded-[8px] lg:rounded-[15px] 4xl:rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
+                <div className="text-gold-sand flex flex-col gap-4 sm:gap-6 xl:gap-[35px] 3xl:gap-[46px] mt-2 2xl:mt-4">
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
                     Up to 7,000 TEDY
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
                     +2% FISO Rewards
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
                     +0.4% LBE Bonus
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] sm:rounded-[8px] lg:rounded-[15px] rounded 4xl:rounded-[25px] xl:py-10 py-5 md:py-7 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%] self-end">
                     +0.4% on Yield Farming
-                  </li>
-                  <li className="bg-firefly text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] rounded sm:rounded-[8px] lg:rounded-[15px] 4xl:rounded-[25px] py-5 md:py-7 lg:py-10 xl:py-14 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
+                  </Card>
+                  <Card elevation={6} className="!bg-none !bg-firefly !text-gold-sand text-center text-[22px] md:text-[30px] xl:text-[50px] 4xl:text-[60px] !rounded sm:!rounded-[8px] lg:!rounded-[15px] 4xl:!rounded-[25px] py-5 md:py-7 xl:py-10 4xl:py-[66px] font-bold w-[90%] 4xl:w-[90%]">
                     +2% Incentivized Testnet
-                  </li>
-                </ul>
+                  </Card>
+                </div>
               </div>
               <div className="mt-16 xl:mt-[120px] 2xl:mt-[232px] sm:flex items-center justify-between sm:gap-16">
                 <div className="grow text-white text-justify sm:text-left order-2 xl:w-[514px] font-bold xl:text-[28px]">
@@ -217,12 +220,12 @@ function App() {
                     As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">article</a>.
                   </p>
                 </div>
-                <ul className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:!mb-0">
-                  <li className="order-2 lg:order-1"><img src="teddy-1.png" alt="random teddy nft" /></li>
-                  <li className="order-3 lg:order-2"><img src="teddy-2.png" alt="random teddy nft" /></li>
-                  <li className="order-1 lg:order-3"><img src="teddy-3.png" alt="random teddy nft" /></li>
-                  <li className="order-4 lg:order-4"><img src="teddy-4.png" alt="random teddy nft" /></li>
-                </ul>
+                <div className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:!mb-0">
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-2 lg:order-1"><img src="teddy-1.png" alt="random teddy nft" /></Card>
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-3 lg:order-2"><img src="teddy-2.png" alt="random teddy nft" /></Card>
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-1 lg:order-3"><img src="teddy-3.png" alt="random teddy nft" /></Card>
+                  <Card elevation={6} className="!bg-none !rounded-[15px] order-4 lg:order-4"><img src="teddy-4.png" alt="random teddy nft" /></Card>
+                </div>
               </div>
             </section>
 
