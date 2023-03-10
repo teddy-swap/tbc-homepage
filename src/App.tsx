@@ -1,4 +1,20 @@
-import { Card, CardHeader, Avatar, Pagination, TextField, Tab, Tabs, Box, Paper } from '@mui/material';
+import { 
+  Card,
+  CardHeader,
+  Avatar,
+  Pagination,
+  TextField,
+  Tab,
+  Tabs,
+  Box,
+  Paper,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer
+} from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { Search } from '@mui/icons-material';
 import { useEffect, useState, SyntheticEvent } from 'react';
@@ -22,12 +38,22 @@ const getRankTokens = (rank: number) => {
   else return 0;
 }
 
-function App() {
+const MAX_TEDY_TOKENS_SUPPLY = 5_000_000_000;
+const MAX_ROUND_TWO_TEDY_TOKENS = 42_000_000;
+const MEDIAN_TOKENS_PER_NFT = 5_600;
+const ROUND_ONE_BONUS = 2.75;
+const ROUND_ONE_MINT_PRICE = 350;
+const ROUND_TWO_MINT_PRICE = 150;
 
+function App() {
   const [bears, setBears] = useState<RankedTeddyBearAsset[]>([]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>('');
   const [tabPage, setTabPage] = useState<string>('1');
+  const [roundOneNftsHeld, setRoundOneNftsHeld] = useState<number>(1);
+  const [roundTwoNftsHeld, setRoundTwoNftsHeld] = useState<number>(1);
+
+  const NFTS_SOLD = 470;
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -44,9 +70,30 @@ function App() {
 
   }, []);
 
-  const switchTab = (event: SyntheticEvent, newTabPage: string) => {
-    setTabPage(newTabPage);
-  };
+  const switchTab = (event: SyntheticEvent, newTabPage: string) => setTabPage(newTabPage);
+
+  const calculateTeddySwapMarketCap = (adaPricePerTedy:number) => adaPricePerTedy * MAX_TEDY_TOKENS_SUPPLY;
+
+  const calculateTedyTokensValue = (
+    nftsHeld:number,
+    tedyTokens:number,
+    adaPricePerTedy:number,
+    tedyTokensPerNft:number ) => {
+      return Math.ceil((adaPricePerTedy * tedyTokens) + (nftsHeld * tedyTokensPerNft));
+    }
+
+  const calculateTbcRewards = (nftsHeld:number, isRoundOne:boolean) => {
+    if (isRoundOne) nftsHeld = nftsHeld * ROUND_ONE_BONUS;
+    const percentageShare = (nftsHeld / NFTS_SOLD * 100) / 100;
+    const distributedTokens = NFTS_SOLD * MEDIAN_TOKENS_PER_NFT;
+    const remainingTedyTokens = MAX_ROUND_TWO_TEDY_TOKENS - distributedTokens;
+    const approximateTedyShare = remainingTedyTokens * percentageShare;
+    return Math.ceil(approximateTedyShare);
+  }
+
+  const calculateTbcRoi = (nftsHeld:number, mintPrice:number, tedyToAda:number) => {
+    return tedyToAda/(nftsHeld * mintPrice);
+  }
 
   return (
     <main className="App w-[100vw] h-[100vh] pb-14 bg-aztec">
@@ -93,10 +140,81 @@ function App() {
               aria-label="secondary tabs example"
               TabIndicatorProps={{ style: { background: '#E7C596' } }}
             >
+              {/* <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="0" label="Rewards Calculator"></Tab> */}
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="1" label="Round One" />
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="2" label="Round Two" />
             </Tabs>
           </Box>
+          {/* REWARDS CALCULATOR */}
+          {/* <TabPanel sx={{ padding: '0' }} value="0">
+
+            <div className="mt-8">
+              <p className="text-gold-sand text-[25px] font-bold">How many NFTs do you own?</p>
+              <div className="flex gap-6 mt-6">
+                <TextField id="outlined-basic" label="Round One" type="number" variant="outlined" value={roundOneNftsHeld} onChange={(e) => setRoundOneNftsHeld(parseInt(e.target.value))} />
+                <TextField id="outlined-basic" label="Round Two" type="number" variant="outlined" value={roundTwoNftsHeld} onChange={(e) => setRoundTwoNftsHeld(parseInt(e.target.value))} />
+              </div>
+            </div>
+
+            <div className="font-medium text-gold-sand">
+              <div>
+                Round One Rewards: {calculateTbcRewards(roundOneNftsHeld, true)}
+              </div>
+              <div>
+                Round Two Rewards: {calculateTbcRewards(roundTwoNftsHeld, false)}
+              </div>
+            </div>
+
+            <TableContainer className="mt-5" component={Paper} elevation={6}>
+              <Table sx={{ minWidth: 650 }} aria-label="rewards calculation table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell align="center">Round One</TableCell>
+                    <TableCell align="center">Round Two</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell component="th" scope="row">Expected $TEDY share</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">FISO Rewards</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">LBE Bonus</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">Yield Farming</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row">ITN Bonus</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell component="th" scope="row"></TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right"></TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </TabPanel> */}
+
           {/* ROUND ONE */}
           <TabPanel sx={{ padding: '0' }} value="1">
             {/* SECTION TWO */}
