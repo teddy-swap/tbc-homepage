@@ -40,20 +40,25 @@ const getRankTokens = (rank: number) => {
 
 const MAX_TEDY_TOKENS_SUPPLY = 5_000_000_000;
 const MAX_ROUND_TWO_TEDY_TOKENS = 42_000_000;
-const MEDIAN_TOKENS_PER_NFT = 5_600;
+const ROUND_ONE_MEDIAN_TOKENS_PER_NFT = 20_650;
+const ROUND_TWO_MEDIAN_TOKENS_PER_NFT = 5_600;
 const ROUND_ONE_BONUS = 2.75;
 const ROUND_ONE_MINT_PRICE = 350;
 const ROUND_TWO_MINT_PRICE = 150;
+const MAX_NFTS_NUM = 9200;
+const NFTS_SOLD = 733;
+const NFTS_UNSOLD = MAX_NFTS_NUM - NFTS_SOLD;
+const REMAINING_TOKENS = MAX_ROUND_TWO_TEDY_TOKENS - (ROUND_TWO_MEDIAN_TOKENS_PER_NFT * NFTS_SOLD);
 
 function App() {
   const [bears, setBears] = useState<RankedTeddyBearAsset[]>([]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>('');
-  const [tabPage, setTabPage] = useState<string>('1');
+  const [tabPage, setTabPage] = useState<string>('3');
   const [roundOneNftsHeld, setRoundOneNftsHeld] = useState<number>(1);
   const [roundTwoNftsHeld, setRoundTwoNftsHeld] = useState<number>(1);
-
-  const NFTS_SOLD = 470;
+  const [roundOnePercentageShare, setRoundOnePercentageShare] = useState<number>(0);
+  const [roundTwoPercentageShare, setRoundTwoPercentageShare] = useState<number>(0);
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -74,25 +79,29 @@ function App() {
 
   const calculateTeddySwapMarketCap = (adaPricePerTedy:number) => adaPricePerTedy * MAX_TEDY_TOKENS_SUPPLY;
 
-  const calculateTedyTokensValue = (
-    nftsHeld:number,
-    tedyTokens:number,
-    adaPricePerTedy:number,
-    tedyTokensPerNft:number ) => {
-      return Math.ceil((adaPricePerTedy * tedyTokens) + (nftsHeld * tedyTokensPerNft));
-    }
+  const calculateTedyTokensValueToAda = ( nftsHeld:number, tedyTokens:number, adaPricePerTedy:number, tedyTokensPerNft:number ) => {
+    return Math.ceil((adaPricePerTedy * tedyTokens) + (nftsHeld * tedyTokensPerNft));
+  }
+
+  const calculatePercentageShareFromRemainingTokens = (isRoundOne:boolean = true) => {
+    console.log(roundOneNftsHeld, ROUND_ONE_BONUS, NFTS_SOLD);
+
+    if (isRoundOne) return (roundOneNftsHeld * ROUND_ONE_BONUS / NFTS_SOLD * 100);
+   
+    return (roundTwoNftsHeld / NFTS_SOLD * 100);
+  }
 
   const calculateTbcRewards = (nftsHeld:number, isRoundOne:boolean) => {
     if (isRoundOne) nftsHeld = nftsHeld * ROUND_ONE_BONUS;
     const percentageShare = (nftsHeld / NFTS_SOLD * 100) / 100;
-    const distributedTokens = NFTS_SOLD * MEDIAN_TOKENS_PER_NFT;
+    const distributedTokens = NFTS_SOLD * ROUND_ONE_MEDIAN_TOKENS_PER_NFT;
     const remainingTedyTokens = MAX_ROUND_TWO_TEDY_TOKENS - distributedTokens;
     const approximateTedyShare = remainingTedyTokens * percentageShare;
     return Math.ceil(approximateTedyShare);
   }
 
-  const calculateTbcRoi = (nftsHeld:number, mintPrice:number, tedyToAda:number) => {
-    return tedyToAda/(nftsHeld * mintPrice);
+  const calculateTbcRoi = (nftsHeld:number, mintPrice:number, ada:number) => {
+    return ada/(nftsHeld * mintPrice);
   }
 
   return (
@@ -140,81 +149,11 @@ function App() {
               aria-label="secondary tabs example"
               TabIndicatorProps={{ style: { background: '#E7C596' } }}
             >
-              {/* <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="0" label="Rewards Calculator"></Tab> */}
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="1" label="Round One" />
               <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="2" label="Round Two" />
+              <Tab className="!font-montserrat !font-bold !xl:text-[32px]" value="3" label="Rewards Calculator" />
             </Tabs>
           </Box>
-          {/* REWARDS CALCULATOR */}
-          {/* <TabPanel sx={{ padding: '0' }} value="0">
-
-            <div className="mt-8">
-              <p className="text-gold-sand text-[25px] font-bold">How many NFTs do you own?</p>
-              <div className="flex gap-6 mt-6">
-                <TextField id="outlined-basic" label="Round One" type="number" variant="outlined" value={roundOneNftsHeld} onChange={(e) => setRoundOneNftsHeld(parseInt(e.target.value))} />
-                <TextField id="outlined-basic" label="Round Two" type="number" variant="outlined" value={roundTwoNftsHeld} onChange={(e) => setRoundTwoNftsHeld(parseInt(e.target.value))} />
-              </div>
-            </div>
-
-            <div className="font-medium text-gold-sand">
-              <div>
-                Round One Rewards: {calculateTbcRewards(roundOneNftsHeld, true)}
-              </div>
-              <div>
-                Round Two Rewards: {calculateTbcRewards(roundTwoNftsHeld, false)}
-              </div>
-            </div>
-
-            <TableContainer className="mt-5" component={Paper} elevation={6}>
-              <Table sx={{ minWidth: 650 }} aria-label="rewards calculation table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell></TableCell>
-                    <TableCell align="center">Round One</TableCell>
-                    <TableCell align="center">Round Two</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow>
-                    <TableCell component="th" scope="row">Expected $TEDY share</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right"></TableCell>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableCell component="th" scope="row">FISO Rewards</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right"></TableCell>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableCell component="th" scope="row">LBE Bonus</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right"></TableCell>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableCell component="th" scope="row">Yield Farming</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right"></TableCell>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableCell component="th" scope="row">ITN Bonus</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right"></TableCell>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableCell component="th" scope="row"></TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right"></TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </TabPanel> */}
-
           {/* ROUND ONE */}
           <TabPanel sx={{ padding: '0' }} value="1">
             {/* SECTION TWO */}
@@ -356,6 +295,123 @@ function App() {
                 </p>
               </div>
             </section>
+          </TabPanel>
+
+          {/* REWARDS CALCULATOR */}
+          <TabPanel sx={{ padding: '0' }} value="3">
+
+            <div className="w-full mt-10">
+
+              <div className="grid grid-cols-3 gap-5 mt-8">
+                <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
+                  <div className="text-[12px]">Available Rewards</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{REMAINING_TOKENS.toLocaleString('en-US')} $TEDY</div>
+                  <div className="text-[12px]">Divided by % of sold NFTs</div>
+                </Card>
+                <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
+                  <div className="text-[12px]">NFTs Sold</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{NFTS_SOLD}</div>
+                </Card>
+                <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
+                  <div className="text-[12px]">NFTs Unsold</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{NFTS_UNSOLD}</div>
+                </Card>
+              </div>
+
+              <div className="grid grid-cols-2 gap-5 mt-8">
+                <div className="order-1">
+                  <h3 className="text-gold-sand">Price per $TEDY (ADA)</h3>
+                  <TextField className="!mt-5" id="outlined-basic" type="number" label="PRICE" variant="outlined" fullWidth />
+                </div>
+                <div>
+                  <h3 className="text-gold-sand">How many NFTs do you own?</h3>
+                  <div className="grid grid-cols-2 gap-5 mt-5">
+                    <TextField 
+                      inputProps={{min: 0, max: 9200}}
+                      value={roundOneNftsHeld}
+                      onChange={(e) => {
+                        setRoundOneNftsHeld(parseInt(e.target.value));
+                      }}
+                      type="number"
+                      id="outlined-basic"
+                      label="ROUND ONE"
+                      variant="outlined"
+                    />
+                    <TextField
+                      value={roundTwoNftsHeld}
+                      onChange={(e) => setRoundTwoNftsHeld(parseInt(e.target.value))}
+                      type="number"
+                      id="outlined-basic"
+                      label="ROUND TWO"
+                      variant="outlined"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <TableContainer className="mt-10 !bg-firefly !bg-none" component={Paper} elevation={6}>
+                <Table sx={{ minWidth: 650 }} aria-label="rewards calculation table">
+                  <TableHead>
+                    <TableRow className="!p-[20px]">
+                      <TableCell></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">ROUND ONE</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">ROUND TWO</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">TOTAL</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Mint Price</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_ONE_MINT_PRICE} $ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_TWO_MINT_PRICE} $ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">N/A</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">NFTs Held</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{isNaN(roundOneNftsHeld) ? 0 : roundOneNftsHeld}</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{isNaN(roundTwoNftsHeld) ? 0 : roundTwoNftsHeld}</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneNftsHeld + roundTwoNftsHeld}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Percentage of Sold NFTs</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">
+                        {isNaN(roundOneNftsHeld) ? 0.00 : roundOnePercentageShare.toFixed(2)}%
+                      </TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">
+                        {isNaN(roundTwoNftsHeld) ? 0.00 : roundTwoPercentageShare.toFixed(2)}%
+                      </TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">
+                        {isNaN(roundTwoNftsHeld) ? 0.00 : roundTwoPercentageShare.toFixed(2)}%
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Approximate TEDY Tokens</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Value of TEDY TOKENS (ADA)</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">ROI</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center"></TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Total Rewards</TableCell>
+                      <TableCell align="center"></TableCell>
+                      <TableCell align="center"></TableCell>
+                      <TableCell align="center"></TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
           </TabPanel>
         </TabContext>
       </div>
