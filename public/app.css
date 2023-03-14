@@ -632,6 +632,14 @@ video {
   margin-bottom: 1rem;
 }
 
+.\!mt-5 {
+  margin-top: 1.25rem !important;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-16 {
   margin-top: 4rem;
 }
@@ -654,14 +662,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
-.\!mt-5 {
-  margin-top: 1.25rem !important;
 }
 
 .flex {
@@ -716,10 +716,6 @@ video {
   width: 100%;
 }
 
-.w-\[800px\] {
-  width: 800px;
-}
-
 .max-w-\[1700px\] {
   max-width: 1700px;
 }
@@ -755,12 +751,12 @@ video {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -803,10 +799,6 @@ video {
   gap: 1.25rem;
 }
 
-.gap-6 {
-  gap: 1.5rem;
-}
-
 .gap-8 {
   gap: 2rem;
 }
@@ -831,12 +823,12 @@ video {
   border-radius: 0.375rem !important;
 }
 
-.rounded-\[4px\] {
-  border-radius: 4px;
-}
-
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-\[4px\] {
+  border-radius: 4px;
 }
 
 .\!bg-firefly {
@@ -886,10 +878,6 @@ video {
   background-repeat: no-repeat;
 }
 
-.p-\[20px\] {
-  padding: 20px;
-}
-
 .\!p-\[20px\] {
   padding: 20px !important;
 }
@@ -912,11 +900,6 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-}
-
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 
 .pb-14 {
@@ -959,6 +942,10 @@ video {
   font-family: 'Montserrat', sans-serif;
 }
 
+.text-\[12px\] {
+  font-size: 12px;
+}
+
 .text-\[14px\] {
   font-size: 14px;
 }
@@ -971,20 +958,12 @@ video {
   font-size: 22px;
 }
 
-.text-\[25px\] {
-  font-size: 25px;
+.text-\[24px\] {
+  font-size: 24px;
 }
 
 .text-\[28px\] {
   font-size: 28px;
-}
-
-.text-\[12px\] {
-  font-size: 12px;
-}
-
-.text-\[24px\] {
-  font-size: 24px;
 }
 
 .\!font-bold {
@@ -1032,10 +1011,6 @@ video {
 
 .outline-1 {
   outline-width: 1px;
-}
-
-.outline-gold-sand {
-  outline-color: #E7C596;
 }
 
 .filter {
@@ -1131,6 +1106,14 @@ video {
 
   .md\:w-\[420px\] {
     width: 420px;
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:flex-row {
