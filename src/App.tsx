@@ -82,7 +82,7 @@ function App() {
   const [bears, setBears] = useState<RankedTeddyBearAsset[]>([]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>('');
-  const [tabPage, setTabPage] = useState<string>('3');
+  const [tabPage, setTabPage] = useState<string>('1');
   const [roundOneNftsHeld, setRoundOneNftsHeld] = useState<number>(1);
   const [roundTwoNftsHeld, setRoundTwoNftsHeld] = useState<number>(1);
   const [roundOnePercentageShare, setRoundOnePercentageShare] = useState<number>(0);
