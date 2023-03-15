@@ -99,6 +99,8 @@ function App() {
   const [distributedTokens, setDistributedTokens] = useState<number>(0);
   const [availableTokenRewards, setAvailableTokenRewards] = useState<number>(0);
   const [nftsUnsold, setNftsUnsold] = useState<number>(0);
+  const [roundOneTotalTedy, setRoundOneTotalTedy] = useState<number>(0);
+  const [roundTwoTotalTedy, setRoundTwoTotalTedy] = useState<number>(0);
 
   const roundOneTotalFisoRewards = roundOneNftsHeld * ROUND_ONE_FISO_REWARD;
   const roundTwoTotalFisoRewards = roundTwoNftsHeld * ROUND_TWO_FISO_REWARD;
@@ -128,9 +130,9 @@ function App() {
   }, [roundOneTokenShare, roundTwoTokenShare, roundOneNftsHeld, roundTwoNftsHeld])
 
   const convertTotalTedyToAda = useCallback((isRoundOne: boolean) => {
-    if (isRoundOne) return calculateTedyTokensTotal(true) * tedyToAda;
-    return calculateTedyTokensTotal(false) * tedyToAda;
-  }, [tedyToAda, calculateTedyTokensTotal])
+    if (isRoundOne) return roundOneTotalTedy * tedyToAda;
+    return roundTwoTotalTedy * tedyToAda;
+  }, [tedyToAda, roundOneTotalTedy, roundTwoTotalTedy])
 
   const calculateTbcRoi = useCallback((isRoundOne: boolean) => {
     if (isRoundOne && roundOneNftsHeld === 0) return 0;
@@ -152,18 +154,22 @@ function App() {
     setRoundOneRoi(calculateTbcRoi(true));
     setRoundTwoRoi(calculateTbcRoi(false));
 
+    setRoundOneTotalTedy(calculateTedyTokensTotal(true));
+    setRoundTwoTotalTedy(calculateTedyTokensTotal(false));
+
     setTedyToAda(Number(tedyToAdaString));
   }, [
         tedyToAdaString,
+        roundTwoNftsSold,
+        nftsUnsold,
+        availableTokenRewards,
+        distributedTokens,
         calculatePercentageShareFromAvailableRewards,
         calculateApproximateTbcRewards,
         convertTotalTedyToAda,
         calculateTbcRoi,
-        roundTwoNftsSold,
-        nftsUnsold,
-        availableTokenRewards,
-        distributedTokens
-      ])
+        calculateTedyTokensTotal
+      ])  
 
   useEffect(() => {
     setDistributedTokens(roundTwoNftsSold * ROUND_TWO_MEDIAN_TOKENS_PER_NFT);
@@ -493,9 +499,11 @@ function App() {
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Approximate Rewards</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTokenShare.toLocaleString('en-US')} $TEDY</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTokenShare.toLocaleString('en-US')} $TEDY</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTokenShare + roundTwoTokenShare).toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTotalTedy.toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTotalTedy.toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">
+                        {(roundOneTotalTedy + roundTwoTotalTedy).toLocaleString('en-US')} $TEDY
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Value of TEDY TOKENS</TableCell>
