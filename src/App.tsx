@@ -65,6 +65,7 @@ const ROUND_ONE_FISO_REWARD = 5;
 const ROUND_ONE_LBE_BONUS = 1;
 const ROUND_ONE_YIELD_FARMING = 1;
 const ROUND_ONE_ITN = 5;
+const ROUND_ONE_NFTS_SOLD = 804;
 
 // ROUND TWO
 const ROUND_TWO_MEDIAN_TOKENS_PER_NFT = 5_600;
@@ -88,16 +89,18 @@ function App() {
   const [roundTwoPercentageShare, setRoundTwoPercentageShare] = useState<number>(0);
   const [roundOneTokenShare, setRoundOneTokenShare] = useState<number>(0);
   const [roundTwoTokenShare, setRoundTwoTokenShare] = useState<number>(0);
-  const [tedyToAda, setTedyToAda] = useState<number>(0.005);
-  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.005');
+  const [tedyToAda, setTedyToAda] = useState<number>(0.01);
+  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.01');
   const [roundOneTedyToAdaTotal, setRoundOneTedyToAdaTotal] = useState<number>(0);
   const [roundTwoTedyToAdaTotal, setRoundTwoTedyToAdaTotal] = useState<number>(0);
   const [roundOneRoi, setRoundOneRoi] = useState<number>(0);
   const [roundTwoRoi, setRoundTwoRoi] = useState<number>(0);
-  const [nftSold, setNftSold] = useState<number>(0);
+  const [roundTwoNftsSold, setRoundTwoNftsSold] = useState<number>(0);
   const [distributedTokens, setDistributedTokens] = useState<number>(0);
   const [availableTokenRewards, setAvailableTokenRewards] = useState<number>(0);
-  const [nftUnsold, setNftUnsold] = useState<number>(0);
+  const [nftsUnsold, setNftsUnsold] = useState<number>(0);
+  const [roundOneTotalTedy, setRoundOneTotalTedy] = useState<number>(0);
+  const [roundTwoTotalTedy, setRoundTwoTotalTedy] = useState<number>(0);
 
   const roundOneTotalFisoRewards = roundOneNftsHeld * ROUND_ONE_FISO_REWARD;
   const roundTwoTotalFisoRewards = roundTwoNftsHeld * ROUND_TWO_FISO_REWARD;
@@ -108,31 +111,30 @@ function App() {
   const roundOneTotalItnRewards = roundOneNftsHeld * ROUND_ONE_ITN;
   const roundTwoTotalItnRewards = roundTwoNftsHeld * ROUND_TWO_ITN;
 
-
   const classes = useStyles();
 
-  const calculateApproximateTbcRewards = useCallback((IsRoundOne: boolean = true) => {
+  const calculateApproximateTbcRewards = useCallback((IsRoundOne: boolean) => {
     const share = (IsRoundOne ? roundOnePercentageShare : roundTwoPercentageShare) / 100;
     const approximateTedyShare = availableTokenRewards * share;
     return Math.ceil(approximateTedyShare);
   }, [roundOnePercentageShare, roundTwoPercentageShare, availableTokenRewards])
 
-  const calculatePercentageShareFromAvailableRewards = useCallback((isRoundOne: boolean = true) => {
-    if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_BONUS / nftSold * 100;
-    return roundTwoNftsHeld / nftSold * 100;
-  }, [nftSold, roundOneNftsHeld, roundTwoNftsHeld])
+  const calculatePercentageShareFromAvailableRewards = useCallback((isRoundOne: boolean) => {
+    if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_BONUS / (ROUND_ONE_NFTS_SOLD * ROUND_ONE_BONUS + roundTwoNftsSold) * 100;
+    return roundTwoNftsHeld / (roundTwoNftsSold + (ROUND_ONE_NFTS_SOLD * ROUND_ONE_BONUS)) * 100;
+  }, [roundOneNftsHeld, roundTwoNftsHeld, roundTwoNftsSold])
 
-  const calculateTedyTokensTotal = useCallback((isRoundOne: boolean = true) => {
+  const calculateTedyTokensTotal = useCallback((isRoundOne: boolean) => {
     if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_MEDIAN_TOKENS_PER_NFT + roundOneTokenShare;
     return roundTwoNftsHeld * ROUND_TWO_MEDIAN_TOKENS_PER_NFT + roundTwoTokenShare;
   }, [roundOneTokenShare, roundTwoTokenShare, roundOneNftsHeld, roundTwoNftsHeld])
 
-  const convertTotalTedyToAda = useCallback((isRoundOne: boolean = true) => {
-    if (isRoundOne) return calculateTedyTokensTotal() * tedyToAda;
-    return calculateTedyTokensTotal(false) * tedyToAda;
-  }, [tedyToAda, calculateTedyTokensTotal])
+  const convertTotalTedyToAda = useCallback((isRoundOne: boolean) => {
+    if (isRoundOne) return roundOneTotalTedy * tedyToAda;
+    return roundTwoTotalTedy * tedyToAda;
+  }, [tedyToAda, roundOneTotalTedy, roundTwoTotalTedy])
 
-  const calculateTbcRoi = useCallback((isRoundOne: boolean = true) => {
+  const calculateTbcRoi = useCallback((isRoundOne: boolean) => {
     if (isRoundOne && roundOneNftsHeld === 0) return 0;
     if (!isRoundOne && roundTwoNftsHeld === 0) return 0;
     if (isRoundOne) return (roundOneTedyToAdaTotal / (roundOneNftsHeld * ROUND_ONE_MINT_PRICE)) * 100;
@@ -140,36 +142,40 @@ function App() {
   }, [roundOneNftsHeld, roundTwoNftsHeld, roundOneTedyToAdaTotal, roundTwoTedyToAdaTotal])
 
   useEffect(() => {
-    setRoundOnePercentageShare(calculatePercentageShareFromAvailableRewards());
+    setRoundOnePercentageShare(calculatePercentageShareFromAvailableRewards(true));
     setRoundTwoPercentageShare(calculatePercentageShareFromAvailableRewards(false));
 
-    setRoundOneTokenShare(calculateApproximateTbcRewards());
+    setRoundOneTokenShare(calculateApproximateTbcRewards(true));
     setRoundTwoTokenShare(calculateApproximateTbcRewards(false));
 
-    setRoundOneTedyToAdaTotal(convertTotalTedyToAda());
+    setRoundOneTedyToAdaTotal(convertTotalTedyToAda(true));
     setRoundTwoTedyToAdaTotal(convertTotalTedyToAda(false))
 
-    setRoundOneRoi(calculateTbcRoi());
+    setRoundOneRoi(calculateTbcRoi(true));
     setRoundTwoRoi(calculateTbcRoi(false));
+
+    setRoundOneTotalTedy(calculateTedyTokensTotal(true));
+    setRoundTwoTotalTedy(calculateTedyTokensTotal(false));
 
     setTedyToAda(Number(tedyToAdaString));
   }, [
-    tedyToAdaString,
-    calculatePercentageShareFromAvailableRewards,
-    calculateApproximateTbcRewards,
-    convertTotalTedyToAda,
-    calculateTbcRoi,
-    nftSold,
-    nftUnsold,
-    availableTokenRewards,
-    distributedTokens
-  ])
+        tedyToAdaString,
+        roundTwoNftsSold,
+        nftsUnsold,
+        availableTokenRewards,
+        distributedTokens,
+        calculatePercentageShareFromAvailableRewards,
+        calculateApproximateTbcRewards,
+        convertTotalTedyToAda,
+        calculateTbcRoi,
+        calculateTedyTokensTotal
+      ])  
 
   useEffect(() => {
-    setDistributedTokens(nftSold * ROUND_TWO_MEDIAN_TOKENS_PER_NFT);
+    setDistributedTokens(roundTwoNftsSold * ROUND_TWO_MEDIAN_TOKENS_PER_NFT);
     setAvailableTokenRewards(MAX_ROUND_TWO_TEDY_TOKENS - distributedTokens);
-    setNftUnsold(MAX_NFTS_NUM - nftSold);
-  }, [nftSold, distributedTokens])
+    setNftsUnsold(MAX_NFTS_NUM - roundTwoNftsSold);
+  }, [roundTwoNftsSold, distributedTokens])  
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -181,7 +187,7 @@ function App() {
     const getNftSold = async () => {
       const nftSoldReq = await fetch("https://teddy-fiso.azurewebsites.net/api/teddy_tbc_round_2_sold");
       const nftSoldResp: NftSoldResponse = await nftSoldReq.json();
-      setNftSold(nftSoldResp.totalSold - 1);
+      setRoundTwoNftsSold(nftSoldResp.totalSold - 1);
     }
 
     loadAssets();
@@ -319,7 +325,7 @@ function App() {
                           </Avatar>
                         }
                         title={a.name}
-                        subheader={`${getRankTokens(parseInt(a.rarityRank))} $TEDY Tokens + 10% Bonus`}
+                        subheader={`${getRankTokens(parseInt(a.rarityRank))} TEDY Tokens + 10% Bonus`}
                         titleTypographyProps={{
                           className: 'text-white'
                         }}
@@ -396,22 +402,24 @@ function App() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">Available Rewards</div>
-                  <div className="text-[24px] text-gold-sand font-bold">{availableTokenRewards.toLocaleString('en-US')} $TEDY</div>
-                  <div className="text-[12px]">Divided by % of sold NFTs</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{availableTokenRewards.toLocaleString('en-US')} TEDY</div>
+                  <div className="text-[12px]">Round Two</div>
                 </Card>
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">NFTs Sold</div>
-                  <div className="text-[24px] text-gold-sand font-bold">{nftSold.toLocaleString('en-US')}</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{roundTwoNftsSold.toLocaleString('en-US')}</div>
+                  <div className="text-[12px]">Round Two</div>
                 </Card>
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">NFTs Unsold</div>
-                  <div className="text-[24px] text-gold-sand font-bold">{nftUnsold.toLocaleString('en-US')}</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{nftsUnsold.toLocaleString('en-US')}</div>
+                  <div className="text-[12px]">Round Two</div>
                 </Card>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
                 <div className="order-1">
-                  <h3 className="text-gold-sand">Price per $TEDY (ADA)</h3>
+                  <h3 className="text-gold-sand">Price per TEDY (ADA)</h3>
                   <TextField
                     className={classes.root}
                     value={tedyToAdaString}
@@ -422,7 +430,7 @@ function App() {
                     margin="normal"
                     fullWidth
                     type="number"
-                    inputProps={{ step: "0.005", min: 0.005, max: 10000 }}
+                    inputProps={{ step: "0.05", min: 0.05, max: 10000 }}
                   />
                 </div>
                 <div>
@@ -467,9 +475,9 @@ function App() {
                   <TableBody>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Mint Price</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_ONE_MINT_PRICE} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_TWO_MINT_PRICE} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">N/A</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_ONE_MINT_PRICE} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_TWO_MINT_PRICE} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneNftsHeld * ROUND_ONE_MINT_PRICE) + (roundTwoNftsHeld * ROUND_TWO_MINT_PRICE)} ADA</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">NFTs Held</TableCell>
@@ -478,7 +486,7 @@ function App() {
                       <TableCell className="!text-gold-sand !font-bold" align="center">{Number(roundOneNftsHeld) + Number(roundTwoNftsHeld)}</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Percentage of Available Rewards</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Percentage from Available Rewards</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">
                         {roundOnePercentageShare.toFixed(2)}%
                       </TableCell>
@@ -490,22 +498,24 @@ function App() {
                       </TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Approximate TEDY Tokens</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTokenShare.toLocaleString('en-US')} $TEDY</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTokenShare.toLocaleString('en-US')} $TEDY</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTokenShare + roundTwoTokenShare).toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Approximate Rewards</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTotalTedy.toLocaleString('en-US')} TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTotalTedy.toLocaleString('en-US')} TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">
+                        {(roundOneTotalTedy + roundTwoTotalTedy).toLocaleString('en-US')} TEDY
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Value of TEDY TOKENS</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTedyToAdaTotal + roundOneTedyToAdaTotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTedyToAdaTotal + roundTwoTedyToAdaTotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ADA</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">ROI</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneRoi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoRoi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneRoi + roundTwoRoi).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{((roundOneTedyToAdaTotal + roundTwoTedyToAdaTotal) / ((roundOneNftsHeld * ROUND_ONE_MINT_PRICE) + (roundTwoNftsHeld * ROUND_TWO_MINT_PRICE)) * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">FISO Rewards</TableCell>
@@ -543,6 +553,10 @@ function App() {
                 </Table>
               </TableContainer>
             </div>
+
+            <footer className="w-[90%] max-w-[500px] text-center m-auto text-gold-sand text-[12px] mt-16">
+              *Disclaimer: The figures provided on this website are approximate and for informational purposes only. We do not guarantee their accuracy and are not responsible for any investment decisions made based on this information. Any reliance on this information is at your own risk.
+            </footer>
           </TabPanel>
         </TabContext>
       </div>
