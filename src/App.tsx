@@ -403,8 +403,8 @@ function App() {
                 </Card>
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">NFTs Sold</div>
-                  <div className="text-[24px] text-gold-sand font-bold">{totalNftsSold.toLocaleString('en-US')}</div>
-                  <div className="text-[12px]">Rounds One & Two</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{roundTwoNftsHeld.toLocaleString('en-US')}</div>
+                  <div className="text-[12px]">Round Two</div>
                 </Card>
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">NFTs Unsold</div>
