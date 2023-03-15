@@ -89,8 +89,8 @@ function App() {
   const [roundTwoPercentageShare, setRoundTwoPercentageShare] = useState<number>(0);
   const [roundOneTokenShare, setRoundOneTokenShare] = useState<number>(0);
   const [roundTwoTokenShare, setRoundTwoTokenShare] = useState<number>(0);
-  const [tedyToAda, setTedyToAda] = useState<number>(0.05);
-  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.05');
+  const [tedyToAda, setTedyToAda] = useState<number>(0.01);
+  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.01');
   const [roundOneTedyToAdaTotal, setRoundOneTedyToAdaTotal] = useState<number>(0);
   const [roundTwoTedyToAdaTotal, setRoundTwoTedyToAdaTotal] = useState<number>(0);
   const [roundOneRoi, setRoundOneRoi] = useState<number>(0);
@@ -325,7 +325,7 @@ function App() {
                           </Avatar>
                         }
                         title={a.name}
-                        subheader={`${getRankTokens(parseInt(a.rarityRank))} $TEDY Tokens + 10% Bonus`}
+                        subheader={`${getRankTokens(parseInt(a.rarityRank))} TEDY Tokens + 10% Bonus`}
                         titleTypographyProps={{
                           className: 'text-white'
                         }}
@@ -402,7 +402,7 @@ function App() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">Available Rewards</div>
-                  <div className="text-[24px] text-gold-sand font-bold">{availableTokenRewards.toLocaleString('en-US')} $TEDY</div>
+                  <div className="text-[24px] text-gold-sand font-bold">{availableTokenRewards.toLocaleString('en-US')} TEDY</div>
                   <div className="text-[12px]">Round Two</div>
                 </Card>
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
@@ -419,7 +419,7 @@ function App() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
                 <div className="order-1">
-                  <h3 className="text-gold-sand">Price per $TEDY (ADA)</h3>
+                  <h3 className="text-gold-sand">Price per TEDY (ADA)</h3>
                   <TextField
                     className={classes.root}
                     value={tedyToAdaString}
@@ -475,9 +475,9 @@ function App() {
                   <TableBody>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Mint Price</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_ONE_MINT_PRICE} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_TWO_MINT_PRICE} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">N/A</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_ONE_MINT_PRICE} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{ROUND_TWO_MINT_PRICE} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneNftsHeld * ROUND_ONE_MINT_PRICE) + (roundTwoNftsHeld * ROUND_TWO_MINT_PRICE)} ADA</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">NFTs Held</TableCell>
@@ -499,23 +499,23 @@ function App() {
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Approximate Rewards</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTotalTedy.toLocaleString('en-US')} $TEDY</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTotalTedy.toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTotalTedy.toLocaleString('en-US')} TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTotalTedy.toLocaleString('en-US')} TEDY</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">
-                        {(roundOneTotalTedy + roundTwoTotalTedy).toLocaleString('en-US')} $TEDY
+                        {(roundOneTotalTedy + roundTwoTotalTedy).toLocaleString('en-US')} TEDY
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Value of TEDY TOKENS</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $ADA</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTedyToAdaTotal + roundTwoTedyToAdaTotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTedyToAdaTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTedyToAdaTotal + roundTwoTedyToAdaTotal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ADA</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">ROI</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneRoi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoRoi.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneRoi + roundTwoRoi).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{((roundOneTedyToAdaTotal + roundTwoTedyToAdaTotal) / ((roundOneNftsHeld * ROUND_ONE_MINT_PRICE) + (roundTwoNftsHeld * ROUND_TWO_MINT_PRICE)) * 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">FISO Rewards</TableCell>
