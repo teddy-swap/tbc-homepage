@@ -89,8 +89,8 @@ function App() {
   const [roundTwoPercentageShare, setRoundTwoPercentageShare] = useState<number>(0);
   const [roundOneTokenShare, setRoundOneTokenShare] = useState<number>(0);
   const [roundTwoTokenShare, setRoundTwoTokenShare] = useState<number>(0);
-  const [tedyToAda, setTedyToAda] = useState<number>(0.01);
-  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.01');
+  const [tedyToAda, setTedyToAda] = useState<number>(0.05);
+  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.05');
   const [roundOneTedyToAdaTotal, setRoundOneTedyToAdaTotal] = useState<number>(0);
   const [roundTwoTedyToAdaTotal, setRoundTwoTedyToAdaTotal] = useState<number>(0);
   const [roundOneRoi, setRoundOneRoi] = useState<number>(0);
