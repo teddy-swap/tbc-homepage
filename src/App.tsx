@@ -13,21 +13,25 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  TableContainer,
-  createTheme,
-  ThemeProvider
+  TableContainer
 } from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { IsoRounded, NumbersSharp, Search } from '@mui/icons-material';
 import { useEffect, useState, SyntheticEvent, useCallback } from 'react';
 import Image from 'rc-image';
 import SyncIcon from '@mui/icons-material/Sync';
+import { makeStyles } from "@material-ui/styles";
 
-const theme = createTheme({
-  palette: {
-    warning: {
-      main: "#E7C596"
-    }
+const useStyles = makeStyles({
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '&.Mui-focused fieldset': {
+        borderColor: '#E7C596',
+      },
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+      color: '#E7C596',
+    },
   },
 });
 
@@ -69,7 +73,7 @@ const MAX_TEDY_TOKENS_SUPPLY = 5_000_000_000;
 const MAX_ROUND_TWO_TEDY_TOKENS = 42_000_000;
 const ROUND_TWO_MINT_PRICE = 150;
 const MAX_NFTS_NUM = 9200;
-const NFTS_SOLD = 829;
+const NFTS_SOLD = 850;
 const DISTRIBUTED_TOKENS = NFTS_SOLD * ROUND_TWO_MEDIAN_TOKENS_PER_NFT;
 const AVAILABLE_TOKEN_REWARDS = MAX_ROUND_TWO_TEDY_TOKENS - DISTRIBUTED_TOKENS;
 const NFTS_UNSOLD = MAX_NFTS_NUM - NFTS_SOLD;
@@ -79,7 +83,7 @@ function App() {
   const [bears, setBears] = useState<RankedTeddyBearAsset[]>([]);
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>('');
-  const [tabPage, setTabPage] = useState<string>('3');
+  const [tabPage, setTabPage] = useState<string>('1');
   const [roundOneNftsHeld, setRoundOneNftsHeld] = useState<number>(1);
   const [roundTwoNftsHeld, setRoundTwoNftsHeld] = useState<number>(1);
   const [roundOnePercentageShare, setRoundOnePercentageShare] = useState<number>(0);
@@ -87,6 +91,7 @@ function App() {
   const [roundOneTokenShare, setRoundOneTokenShare] = useState<number>(0);
   const [roundTwoTokenShare, setRoundTwoTokenShare] = useState<number>(0);
   const [tedyToAda, setTedyToAda] = useState<number>(0.005);
+  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.005');
   const [roundOneTedyToAdaTotal, setRoundOneTedyToAdaTotal] = useState<number>(0);
   const [roundTwoTedyToAdaTotal, setRoundTwoTedyToAdaTotal] = useState<number>(0);
   const [roundOneRoi, setRoundOneRoi] = useState<number>(0);
@@ -100,6 +105,8 @@ function App() {
   const roundTwoTotalYieldFarming = roundTwoNftsHeld * ROUND_TWO_YIELD_FARMING;
   const roundOneTotalItnRewards = roundOneNftsHeld * ROUND_ONE_ITN;
   const roundTwoTotalItnRewards = roundTwoNftsHeld * ROUND_TWO_ITN;
+
+  const classes = useStyles();
 
   const calculateApproximateTbcRewards = useCallback((IsRoundOne:boolean = true) => {
     const share = (IsRoundOne ? roundOnePercentageShare : roundTwoPercentageShare) / 100;
@@ -142,7 +149,9 @@ function App() {
     setRoundOneRoi(calculateTbcRoi());
     setRoundTwoRoi(calculateTbcRoi(false));
 
+    setTedyToAda(Number(tedyToAdaString));
   }, [
+      tedyToAdaString,
       calculatePercentageShareFromAvailableRewards,
       calculateApproximateTbcRewards,
       convertTotalTedyToAda,
@@ -163,7 +172,7 @@ function App() {
     });
   }, []);
 
-  // console.log(test());
+  console.log(tedyToAda);
 
   const switchTab = (event: SyntheticEvent, newTabPage: string) => setTabPage(newTabPage);
 
@@ -265,7 +274,7 @@ function App() {
               </div>
             </section>
             {/* SECTION THREE */}
-            {/* <section className="xl:mt-20 pt-14">
+            <section className="xl:mt-20 pt-14">
               <h2 className="text-gold-sand lg:text-[25px] xl:text-[50px] font-bold">Explorer</h2>
               <div className="my-4 flex w-full flex-col gap-10 xl:flex-row justify-between">
                 <div className="flex w-full justify-end md:justify-start lg:justify-end md:mt-0 xl:order-1">
@@ -309,7 +318,7 @@ function App() {
                 <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
               </div>
-            </section> */}
+            </section>
           </TabPanel>
           {/* ROUND TWO */}
           <TabPanel sx={{ padding: '0' }} value="2">
@@ -355,14 +364,14 @@ function App() {
             </section>
 
             {/* SECTION THREE */}
-            {/* <section className="xl:mt-20 pt-14 w-full">
+            <section className="xl:mt-20 pt-14 w-full">
               <div className="grow text-center text-gold-sand">
                 <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting March 8th, 2023 at 5PM UTC</p>
                 <p>
                   Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a>
                 </p>
               </div>
-            </section> */}
+            </section>
           </TabPanel>
 
           {/* REWARDS CALCULATOR */}
@@ -390,32 +399,32 @@ function App() {
                 <div className="order-1">
                   <h3 className="text-gold-sand">Price per $TEDY (ADA)</h3>
                   <TextField
-                    inputProps={{min: 0.00001, max: 10_000}}
-                    className="!mt-5"
-                    value={tedyToAda.toString()}
-                    onChange={(e) => setTedyToAda(Number(e.target.value))}
-                    type="number"
+                    className={classes.root}
+                    value={tedyToAdaString}
+                    onChange={(e) => setTedyToAdaString(e.target.value)}
                     id="outlined-basic"
                     label="PRICE"
                     variant="outlined"
+                    margin="normal"
                     fullWidth
-                  />
+                    type="number"
+                    inputProps={{step: "0.005", min: 0.005, max: 10000}}
+                  />             
                 </div>
                 <div>
                   <h3 className="text-gold-sand">How many NFTs do you own?</h3>
-                  <div className="grid grid-cols-2 gap-5 mt-5">
-                    <ThemeProvider theme={theme}>
-                      <TextField
-                        inputProps={{min: 0, max: 9200}}
-                        value={roundOneNftsHeld.toString()}
-                        onChange={(e) => setRoundOneNftsHeld(Number(e.target.value))}
-                        type="number"
-                        id="outlined-basic"
-                        label="ROUND ONE"
-                        variant="outlined"
-                        color="warning"
-                      />
-                    </ThemeProvider>
+                  <div className="grid grid-cols-2 gap-5">  
+                    <TextField
+                      inputProps={{min: 0, max: 9200}}
+                      value={roundOneNftsHeld.toString()}
+                      onChange={(e) => setRoundOneNftsHeld(Number(e.target.value))}
+                      type="number"
+                      id="outlined-basic"
+                      label="ROUND ONE"
+                      variant="outlined"
+                      className={classes.root}
+                      margin="normal"
+                    />
                     <TextField
                       inputProps={{min: 0, max: 9200}}
                       value={roundTwoNftsHeld.toString()}
@@ -424,6 +433,8 @@ function App() {
                       id="outlined-basic"
                       label="ROUND TWO"
                       variant="outlined"
+                      className={classes.root}
+                      margin="normal"
                     />
                   </div>
                 </div>
@@ -453,7 +464,7 @@ function App() {
                       <TableCell className="!text-gold-sand !font-bold" align="center">{Number(roundOneNftsHeld) + Number(roundTwoNftsHeld)}</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Percentage of Sold NFTs</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Percentage of Available Rewards</TableCell>
                       <TableCell className="!text-gold-sand !font-bold" align="center">
                         {roundOnePercentageShare.toFixed(2)}%
                       </TableCell>
@@ -466,15 +477,15 @@ function App() {
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Approximate TEDY Tokens</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTokenShare.toLocaleString('en-US')}</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTokenShare.toLocaleString('en-US')}</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTokenShare + roundTwoTokenShare).toLocaleString('en-US')}</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTokenShare.toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTokenShare.toLocaleString('en-US')} $TEDY</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTokenShare + roundTwoTokenShare).toLocaleString('en-US')} $TEDY</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Value of TEDY TOKENS (ADA)</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTedyToAdaTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTedyToAdaTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</TableCell>
-                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTedyToAdaTotal + roundOneTedyToAdaTotal).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">Value of TEDY TOKENS</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundOneTedyToAdaTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} $ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{roundTwoTedyToAdaTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} $ADA</TableCell>
+                      <TableCell className="!text-gold-sand !font-bold" align="center">{(roundOneTedyToAdaTotal + roundOneTedyToAdaTotal).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} $ADA</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell className="!text-gold-sand !font-bold" component="th" scope="row">ROI</TableCell>

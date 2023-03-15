@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@material-ui/styles": "^4.11.5",
     "@mui/icons-material": "^5.11.9",
     "@mui/lab": "^5.0.0-alpha.122",
     "@mui/material": "^5.11.10",
@@ -15,6 +16,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "material-ui-numeric-input": "^3.1.1",
     "particles.js": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
