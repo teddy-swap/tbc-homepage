@@ -192,8 +192,6 @@ function App() {
     });
   }, []);
 
-  console.log(tedyToAda);
-
   const switchTab = (event: SyntheticEvent, newTabPage: string) => setTabPage(newTabPage);
 
   return (
