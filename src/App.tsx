@@ -99,7 +99,6 @@ function App() {
   const [distributedTokens, setDistributedTokens] = useState<number>(0);
   const [availableTokenRewards, setAvailableTokenRewards] = useState<number>(0);
   const [nftsUnsold, setNftsUnsold] = useState<number>(0);
-  const [totalNftsSold, setTotalNftsSold] = useState<number>(0);
 
   const roundOneTotalFisoRewards = roundOneNftsHeld * ROUND_ONE_FISO_REWARD;
   const roundTwoTotalFisoRewards = roundTwoNftsHeld * ROUND_TWO_FISO_REWARD;
@@ -112,28 +111,28 @@ function App() {
 
   const classes = useStyles();
 
-  const calculateApproximateTbcRewards = useCallback((IsRoundOne: boolean = true) => {
+  const calculateApproximateTbcRewards = useCallback((IsRoundOne: boolean) => {
     const share = (IsRoundOne ? roundOnePercentageShare : roundTwoPercentageShare) / 100;
     const approximateTedyShare = availableTokenRewards * share;
     return Math.ceil(approximateTedyShare);
   }, [roundOnePercentageShare, roundTwoPercentageShare, availableTokenRewards])
 
-  const calculatePercentageShareFromAvailableRewards = useCallback((isRoundOne: boolean = true) => {
-    if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_BONUS / totalNftsSold * 100;
-    return roundTwoNftsHeld / totalNftsSold * 100;
-  }, [totalNftsSold, roundOneNftsHeld, roundTwoNftsHeld])
+  const calculatePercentageShareFromAvailableRewards = useCallback((isRoundOne: boolean) => {
+    if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_BONUS / (ROUND_ONE_NFTS_SOLD * ROUND_ONE_BONUS + roundTwoNftsSold) * 100;
+    return roundTwoNftsHeld / (roundTwoNftsSold + (ROUND_ONE_NFTS_SOLD * ROUND_ONE_BONUS)) * 100;
+  }, [roundOneNftsHeld, roundTwoNftsHeld, roundTwoNftsSold])
 
-  const calculateTedyTokensTotal = useCallback((isRoundOne: boolean = true) => {
+  const calculateTedyTokensTotal = useCallback((isRoundOne: boolean) => {
     if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_MEDIAN_TOKENS_PER_NFT + roundOneTokenShare;
     return roundTwoNftsHeld * ROUND_TWO_MEDIAN_TOKENS_PER_NFT + roundTwoTokenShare;
   }, [roundOneTokenShare, roundTwoTokenShare, roundOneNftsHeld, roundTwoNftsHeld])
 
-  const convertTotalTedyToAda = useCallback((isRoundOne: boolean = true) => {
-    if (isRoundOne) return calculateTedyTokensTotal() * tedyToAda;
+  const convertTotalTedyToAda = useCallback((isRoundOne: boolean) => {
+    if (isRoundOne) return calculateTedyTokensTotal(true) * tedyToAda;
     return calculateTedyTokensTotal(false) * tedyToAda;
   }, [tedyToAda, calculateTedyTokensTotal])
 
-  const calculateTbcRoi = useCallback((isRoundOne: boolean = true) => {
+  const calculateTbcRoi = useCallback((isRoundOne: boolean) => {
     if (isRoundOne && roundOneNftsHeld === 0) return 0;
     if (!isRoundOne && roundTwoNftsHeld === 0) return 0;
     if (isRoundOne) return (roundOneTedyToAdaTotal / (roundOneNftsHeld * ROUND_ONE_MINT_PRICE)) * 100;
@@ -141,16 +140,16 @@ function App() {
   }, [roundOneNftsHeld, roundTwoNftsHeld, roundOneTedyToAdaTotal, roundTwoTedyToAdaTotal])
 
   useEffect(() => {
-    setRoundOnePercentageShare(calculatePercentageShareFromAvailableRewards());
+    setRoundOnePercentageShare(calculatePercentageShareFromAvailableRewards(true));
     setRoundTwoPercentageShare(calculatePercentageShareFromAvailableRewards(false));
 
-    setRoundOneTokenShare(calculateApproximateTbcRewards());
+    setRoundOneTokenShare(calculateApproximateTbcRewards(true));
     setRoundTwoTokenShare(calculateApproximateTbcRewards(false));
 
-    setRoundOneTedyToAdaTotal(convertTotalTedyToAda());
+    setRoundOneTedyToAdaTotal(convertTotalTedyToAda(true));
     setRoundTwoTedyToAdaTotal(convertTotalTedyToAda(false))
 
-    setRoundOneRoi(calculateTbcRoi());
+    setRoundOneRoi(calculateTbcRoi(true));
     setRoundTwoRoi(calculateTbcRoi(false));
 
     setTedyToAda(Number(tedyToAdaString));
@@ -170,7 +169,6 @@ function App() {
     setDistributedTokens(roundTwoNftsSold * ROUND_TWO_MEDIAN_TOKENS_PER_NFT);
     setAvailableTokenRewards(MAX_ROUND_TWO_TEDY_TOKENS - distributedTokens);
     setNftsUnsold(MAX_NFTS_NUM - roundTwoNftsSold);
-    setTotalNftsSold(roundTwoNftsSold + ROUND_ONE_NFTS_SOLD)
   }, [roundTwoNftsSold, distributedTokens])  
 
   useEffect(() => {
