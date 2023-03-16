@@ -13,7 +13,8 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  TableContainer
+  TableContainer,
+  Switch
 } from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { Search } from '@mui/icons-material';
@@ -58,7 +59,7 @@ const getRankTokens = (rank: number) => {
 }
 
 // ROUND ONE
-const ROUND_ONE_MEDIAN_TOKENS_PER_NFT = 20_650;
+const ROUND_ONE_MIN_TOKENS_PER_NFT = 10_500;
 const ROUND_ONE_BONUS = 2.75;
 const ROUND_ONE_MINT_PRICE = 350;
 const ROUND_ONE_FISO_REWARD = 5;
@@ -68,7 +69,7 @@ const ROUND_ONE_ITN = 5;
 const ROUND_ONE_NFTS_SOLD = 804;
 
 // ROUND TWO
-const ROUND_TWO_MEDIAN_TOKENS_PER_NFT = 5_600;
+const ROUND_TWO_MIN_TOKENS_PER_NFT = 4_200;
 const ROUND_TWO_FISO_REWARD = 2;
 const ROUND_TWO_LBE_BONUS = 0.4;
 const ROUND_TWO_YIELD_FARMING = 0.4;
@@ -77,6 +78,8 @@ const ROUND_TWO_ITN = 2;
 const MAX_ROUND_TWO_TEDY_TOKENS = 42_000_000;
 const ROUND_TWO_MINT_PRICE = 150;
 const MAX_NFTS_NUM = 9200;
+
+const MAX_TEDY_TOKEN_SUPPLY = 5_000_000_000
 
 function App() {
   const [bears, setBears] = useState<RankedTeddyBearAsset[]>([]);
@@ -89,8 +92,8 @@ function App() {
   const [roundTwoPercentageShare, setRoundTwoPercentageShare] = useState<number>(0);
   const [roundOneTokenShare, setRoundOneTokenShare] = useState<number>(0);
   const [roundTwoTokenShare, setRoundTwoTokenShare] = useState<number>(0);
-  const [tedyToAda, setTedyToAda] = useState<number>(0.05);
-  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.05');
+  const [tedyToAda, setTedyToAda] = useState<number>(0.033);
+  const [tedyToAdaString, setTedyToAdaString] = useState<string>('0.033');
   const [roundOneTedyToAdaTotal, setRoundOneTedyToAdaTotal] = useState<number>(0);
   const [roundTwoTedyToAdaTotal, setRoundTwoTedyToAdaTotal] = useState<number>(0);
   const [roundOneRoi, setRoundOneRoi] = useState<number>(0);
@@ -101,6 +104,10 @@ function App() {
   const [nftsUnsold, setNftsUnsold] = useState<number>(0);
   const [roundOneTotalTedy, setRoundOneTotalTedy] = useState<number>(0);
   const [roundTwoTotalTedy, setRoundTwoTotalTedy] = useState<number>(0);
+  const [tedyToAdaMarketCap, setTedyToAdaMarketCap] = useState<number>(0);
+  const [tedyToUsdMarketCap, setTedyToUsdMarketCap] = useState<number>(0);
+  const [adaToUsd, setAdaToUsd] = useState<number>(0);
+  const [isMarketCapAda, setIsMarketCapAda] = useState<boolean>(true);
 
   const roundOneTotalFisoRewards = roundOneNftsHeld * ROUND_ONE_FISO_REWARD;
   const roundTwoTotalFisoRewards = roundTwoNftsHeld * ROUND_TWO_FISO_REWARD;
@@ -125,8 +132,8 @@ function App() {
   }, [roundOneNftsHeld, roundTwoNftsHeld, roundTwoNftsSold])
 
   const calculateTedyTokensTotal = useCallback((isRoundOne: boolean) => {
-    if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_MEDIAN_TOKENS_PER_NFT + roundOneTokenShare;
-    return roundTwoNftsHeld * ROUND_TWO_MEDIAN_TOKENS_PER_NFT + roundTwoTokenShare;
+    if (isRoundOne) return roundOneNftsHeld * ROUND_ONE_MIN_TOKENS_PER_NFT + roundOneTokenShare;
+    return roundTwoNftsHeld * ROUND_TWO_MIN_TOKENS_PER_NFT + roundTwoTokenShare;
   }, [roundOneTokenShare, roundTwoTokenShare, roundOneNftsHeld, roundTwoNftsHeld])
 
   const convertTotalTedyToAda = useCallback((isRoundOne: boolean) => {
@@ -158,24 +165,29 @@ function App() {
     setRoundTwoTotalTedy(calculateTedyTokensTotal(false));
 
     setTedyToAda(Number(tedyToAdaString));
+    setTedyToAdaMarketCap(MAX_TEDY_TOKEN_SUPPLY * tedyToAda);
+    setTedyToUsdMarketCap(tedyToAdaMarketCap * adaToUsd);
   }, [
-        tedyToAdaString,
-        roundTwoNftsSold,
-        nftsUnsold,
-        availableTokenRewards,
-        distributedTokens,
-        calculatePercentageShareFromAvailableRewards,
-        calculateApproximateTbcRewards,
-        convertTotalTedyToAda,
-        calculateTbcRoi,
-        calculateTedyTokensTotal
-      ])  
+    tedyToAdaString,
+    tedyToAdaMarketCap,
+    adaToUsd,
+    tedyToAda,
+    roundTwoNftsSold,
+    nftsUnsold,
+    availableTokenRewards,
+    distributedTokens,
+    calculatePercentageShareFromAvailableRewards,
+    calculateApproximateTbcRewards,
+    convertTotalTedyToAda,
+    calculateTbcRoi,
+    calculateTedyTokensTotal
+  ])
 
   useEffect(() => {
-    setDistributedTokens(roundTwoNftsSold * ROUND_TWO_MEDIAN_TOKENS_PER_NFT);
+    setDistributedTokens(roundTwoNftsSold * ROUND_TWO_MIN_TOKENS_PER_NFT);
     setAvailableTokenRewards(MAX_ROUND_TWO_TEDY_TOKENS - distributedTokens);
     setNftsUnsold(MAX_NFTS_NUM - roundTwoNftsSold);
-  }, [roundTwoNftsSold, distributedTokens])  
+  }, [roundTwoNftsSold, distributedTokens])
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -190,8 +202,16 @@ function App() {
       setRoundTwoNftsSold(nftSoldResp.totalSold - 1);
     }
 
+    const getAdaToUsd = async () => {
+      const req = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=cardano&vs_currencies=usd");
+      const res = await req.json();
+      setAdaToUsd(res.cardano.usd) 
+    }
+
     loadAssets();
     getNftSold();
+    
+    getAdaToUsd();
 
     (window as any).particlesJS.load('section-1', '/particle-config.json', function () {
       console.log('callback - particles.js config loaded');
@@ -207,12 +227,33 @@ function App() {
         <header className="pt-8 xs:pt-14 lg:pt-[30px] px-5 md:px-16 absolute z-[10] w-full">
           <div className="flex flex-col items-center md:flex-row md:justify-between max-w-[1700px] m-auto">
             <div className="w-[150px] md:w-[150px] xl:w-[180px] 2xl:w-[210px]"><a href="/"><img src="teddy-logo.svg" alt="logo" /></a></div>
-            <ul className="flex gap-5 mt-6 md:mt-0">
-              <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
-              <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
-              <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
-              <li className="w-[25px] rounded-[4px] overflow-hidden"><a target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer"><img src="teddy-icon.png" alt="Teddy bear face icon. Icon made by Vector Stall from flaticon.com" /></a></li>
-            </ul>
+            <div className="flex flex-col md:flex-row mt-4 md:mt-0 gap-4 md:gap-6 lg:gap-12">
+              <ul className="flex gap-5 lg:gap-8 items-center">
+                <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
+                  <a rel="noreferrer" target="_blank" href="https://teddyswap.org/">Website</a>
+                </li>
+                <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
+                  <a rel="noreferrer" target="_blank" href="https://teddyswap.peppermintnft.io/">Minting</a>
+                </li>
+                <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
+                  <a rel="noreferrer" target="_blank" href="https://preview.app.teddyswap.org/">Testnet</a>
+                </li>
+              </ul>
+              <ul className="flex justify-between items-center gap-5">
+                <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
+                <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
+                <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
+                <a className="block" target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">
+                  <li className="w-[25px] rounded-[4px] p-1.5 relative">
+                    <div className="absolute w-full bg-white h-[6px] top-0 left-0 rounded-full"></div>
+                    <div className="absolute w-full bg-white h-[6px] bottom-0 left-0 rounded-full"></div>
+                    <div className="absolute w-full bg-white h-[calc(100%-2px)] w-[6px] top-[2px] left-0 rounded-full"></div>
+                    <div className="absolute w-full bg-white h-[calc(100%-2px)] w-[6px] top-[2px] right-0 rounded-full"></div>
+                    <img src="teddy-icon.png" alt="Teddy bear face icon. Icon made by Vector Stall from flaticon.com" />
+                  </li>
+                </a>
+              </ul>
+            </div>
           </div>
         </header>
         <div className="z-[2] lg:pt-[18.38%] w-full lg:absolute lg:bottom-0 xl:bg-transparent">
@@ -338,6 +379,10 @@ function App() {
                 <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
               </div>
+              <div className="text-gold-sand mt-14 text-center">
+                Official policy ID of round one NFTs:&nbsp;
+                  <a className="italic font-bold" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87">ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87</a>
+              </div>
             </section>
           </TabPanel>
           {/* ROUND TWO */}
@@ -383,6 +428,11 @@ function App() {
               </div>
             </section>
 
+            <div className="text-gold-sand mt-14 text-center">
+                Official policy ID of round one NFTs:&nbsp;
+                  <a className="italic font-bold" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c">da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c</a>
+              </div>
+
             {/* SECTION THREE */}
             <section className="xl:mt-20 pt-14 w-full">
               <div className="grow text-center text-gold-sand">
@@ -396,9 +446,7 @@ function App() {
 
           {/* REWARDS CALCULATOR */}
           <TabPanel sx={{ padding: '0' }} value="3">
-
             <div className="w-full mt-10">
-
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-8">
                 <Card elevation={6} className="!bg-firefly !bg-none rounded py-5 text-center flex flex-col justify-center">
                   <div className="text-[12px]">Available Rewards</div>
@@ -461,8 +509,15 @@ function App() {
                   </div>
                 </div>
               </div>
-
-              <TableContainer className="mt-10 !bg-firefly !bg-none" component={Paper} elevation={6}>
+              <div className="mt-10">
+                <div className="font-medium text-gold-sand">
+                  TeddySwap Market Cap: &nbsp;
+                  <span className="font-bold ml-1">{tedyToAdaMarketCap.toLocaleString('en-US')} ADA</span>
+                  &nbsp;/&nbsp;
+                  <span className="font-bold ml-1">{tedyToUsdMarketCap.toLocaleString('en-US')} USD</span>
+                </div>
+              </div>
+              <TableContainer className="mt-4 !bg-firefly !bg-none" component={Paper} elevation={6}>
                 <Table sx={{ minWidth: 650 }} aria-label="rewards calculation table">
                   <TableHead>
                     <TableRow className="!p-[20px]">
