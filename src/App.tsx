@@ -244,11 +244,11 @@ function App() {
                 <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
                 <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
                 <a className="block" target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">
-                  <li className="w-[25px] rounded-[4px] p-1.5 relative">
-                    <div className="absolute w-full bg-white h-[6px] top-0 left-0 rounded-full"></div>
-                    <div className="absolute w-full bg-white h-[6px] bottom-0 left-0 rounded-full"></div>
-                    <div className="absolute w-full bg-white h-[calc(100%-2px)] w-[6px] top-[2px] left-0 rounded-full"></div>
-                    <div className="absolute w-full bg-white h-[calc(100%-2px)] w-[6px] top-[2px] right-0 rounded-full"></div>
+                  <li className="w-[25px] rounded-[4px] p-1.5 relative overflow-hidden">
+                    <div className="absolute w-full bg-white h-[6px] top-0 left-0"></div>
+                    <div className="absolute w-full bg-white h-[6px] bottom-0 left-0"></div>
+                    <div className="absolute bg-white h-[calc(100%-2px)] w-[6px] top-[2px] left-0"></div>
+                    <div className="absolute bg-white h-[calc(100%-2px)] w-[6px] top-[2px] right-0"></div>
                     <img src="teddy-icon.png" alt="Teddy bear face icon. Icon made by Vector Stall from flaticon.com" />
                   </li>
                 </a>
@@ -510,11 +510,11 @@ function App() {
                 </div>
               </div>
               <div className="mt-10">
-                <div className="font-medium text-gold-sand">
-                  TeddySwap Market Cap: &nbsp;
-                  <span className="font-bold ml-1">{tedyToAdaMarketCap.toLocaleString('en-US')} ADA</span>
-                  &nbsp;/&nbsp;
-                  <span className="font-bold ml-1">{tedyToUsdMarketCap.toLocaleString('en-US')} USD</span>
+                <div className="font-medium text-gold-sand flex flex-col md:block">
+                  <span className="mr-1">TeddySwap Market Cap: </span>
+                  <span className="font-bold">{tedyToAdaMarketCap.toLocaleString('en-US')} ADA</span>
+                  <span className="hidden md:inline mx-1">/</span>
+                  <span className="font-bold">{tedyToUsdMarketCap.toLocaleString('en-US')} USD</span>
                 </div>
               </div>
               <TableContainer className="mt-4 !bg-firefly !bg-none" component={Paper} elevation={6}>
