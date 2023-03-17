@@ -13,8 +13,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  TableContainer,
-  Switch
+  TableContainer
 } from '@mui/material';
 import { TabPanel, TabContext } from '@mui/lab';
 import { Search } from '@mui/icons-material';
@@ -59,7 +58,7 @@ const getRankTokens = (rank: number) => {
 }
 
 // ROUND ONE
-const ROUND_ONE_MIN_TOKENS_PER_NFT = 10_500;
+const ROUND_ONE_MIN_TOKENS_PER_NFT = 11_550;
 const ROUND_ONE_BONUS = 2.75;
 const ROUND_ONE_MINT_PRICE = 350;
 const ROUND_ONE_FISO_REWARD = 5;
@@ -107,7 +106,6 @@ function App() {
   const [tedyToAdaMarketCap, setTedyToAdaMarketCap] = useState<number>(0);
   const [tedyToUsdMarketCap, setTedyToUsdMarketCap] = useState<number>(0);
   const [adaToUsd, setAdaToUsd] = useState<number>(0);
-  const [isMarketCapAda, setIsMarketCapAda] = useState<boolean>(true);
 
   const roundOneTotalFisoRewards = roundOneNftsHeld * ROUND_ONE_FISO_REWARD;
   const roundTwoTotalFisoRewards = roundTwoNftsHeld * ROUND_TWO_FISO_REWARD;
@@ -197,20 +195,40 @@ function App() {
     }
 
     const getNftSold = async () => {
-      const nftSoldReq = await fetch("https://teddy-fiso.azurewebsites.net/api/teddy_tbc_round_2_sold");
-      const nftSoldResp: NftSoldResponse = await nftSoldReq.json();
-      setRoundTwoNftsSold(nftSoldResp.totalSold - 1);
+      let nftSoldReq;
+      try {
+        nftSoldReq = await fetch("https://teddy-fiso.azurewebsites.net/api/teddy_tbc_round_2_sold");
+      } catch (e) {
+        console.log("There was an error", e);
+        return;
+      }
+      
+      if (nftSoldReq?.ok) {
+        const nftSoldResp: NftSoldResponse = await nftSoldReq.json();
+        setRoundTwoNftsSold(nftSoldResp.totalSold - 1);
+      } else {
+        console.log(`HTTP Response Code: ${nftSoldReq?.status}`)
+      }
     }
 
     const getAdaToUsd = async () => {
-      const req = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=cardano&vs_currencies=usd");
-      const res = await req.json();
-      setAdaToUsd(res.cardano.usd) 
+      let req;
+      try {
+        req = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=cardano&vs_currencies=usd");
+      } catch (e) {
+        console.log("There was an error", e);
+      }
+
+      if (req?.ok) {
+        const res = await req.json();
+        setAdaToUsd(res.cardano.usd)
+      } else {
+        console.log(`HTTP Response Code: ${req?.status}`)
+      }
     }
 
     loadAssets();
     getNftSold();
-    
     getAdaToUsd();
 
     (window as any).particlesJS.load('section-1', '/particle-config.json', function () {
@@ -238,12 +256,15 @@ function App() {
                 <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
                   <a rel="noreferrer" target="_blank" href="https://preview.app.teddyswap.org/">Testnet</a>
                 </li>
+                <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
+                  <a rel="noreferrer" target="_blank" href="https://docs.teddyswap.org/">Docs</a>
+                </li>
               </ul>
               <ul className="flex justify-between items-center gap-5">
                 <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
                 <li className="w-[25px]"><a target="_blank" href="https://t.me/teddyswap" rel="noreferrer"><img src="telegram.svg" alt="telegram icon" /></a></li>
                 <li className="w-[25px]"><a target="_blank" href="https://discord.gg/GRvcAnqtZG" rel="noreferrer"><img src="discord.svg" alt="discord icon" /></a></li>
-                <a className="block" target="_blank" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">
+                <a className="block" target="_blank" href="https://blog.teddyswap.org/teddy-bears-club-round-2/" rel="noreferrer">
                   <li className="w-[25px] rounded-[4px] p-1.5 relative overflow-hidden">
                     <div className="absolute w-full bg-white h-[6px] top-0 left-0"></div>
                     <div className="absolute w-full bg-white h-[6px] bottom-0 left-0"></div>
@@ -323,7 +344,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                    As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 30,800 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date" rel="noreferrer">article</a>.
+                    As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 28,000 TEDY tokens plus 10% bonus. To learn more, check out our <a target="_blank" className="font-black underline" href="https://blog.teddyswap.org/teddy-bears-club-minting-utility-and-launch-date/" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <div className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0">
@@ -362,7 +383,7 @@ function App() {
                         sx={{ display: 'flex', flexDirection: 'column', gap: '5px', textAlign: 'center', justifyContent: 'center', "> div": { marginRight: '0' } }}
                         avatar={
                           <Avatar sx={{ bgcolor: 'rgb(102 167 242)', color: "#FFF" }} aria-label="recipe">
-                            {(ASSETS_PER_PAGE * (page - 1)) + i + 1}
+                            {bears.indexOf(a) + 1}
                           </Avatar>
                         }
                         title={a.name}
@@ -379,9 +400,9 @@ function App() {
                 <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
               </div>
-              <div className="text-gold-sand mt-14 text-center">
-                Official policy ID of round one NFTs:&nbsp;
-                  <a className="italic font-bold" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87">ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87</a>
+              <div className="text-gold-sand mt-14 text-center justify-center flex flex-col xl:flex-row xl:gap-2">
+                <div>Official policy ID of round one NFTs:</div>
+                <a className="hover:text-white ease-linear duration-150 font-bold text-[10px] md:text-[1rem]" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87">ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87</a>
               </div>
             </section>
           </TabPanel>
@@ -416,7 +437,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                    As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">article</a>.
+                    As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://blog.teddyswap.org/teddy-bears-club-round-2" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <div className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:!mb-0">
@@ -427,23 +448,23 @@ function App() {
                 </div>
               </div>
             </section>
-
-            <div className="text-gold-sand mt-14 text-center">
-                Official policy ID of round one NFTs:&nbsp;
-                  <a className="italic font-bold" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c">da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c</a>
-              </div>
-
+            <div className="text-gold-sand mt-14 text-center justify-center flex flex-col xl:flex-row xl:gap-2">
+              <div>Official policy ID of round two NFTs:</div>
+              <a className="hover:text-white ease-linear duration-150 font-bold text-[10px] md:text-[1rem]" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c">da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c</a>
+            </div>
             {/* SECTION THREE */}
-            <section className="xl:mt-20 pt-14 w-full">
+            <section className="pt-14 w-full">
               <div className="grow text-center text-gold-sand">
-                <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[50px]">Round 2 Minting March 8th, 2023 at 5PM UTC</p>
+                <p className="font-montserrat font-bold text-[20px] md:text-[30px] xl:text-[45px]">Round 2 Minting ends on</p>
+                <p className="font-montserrat font-bold text-[20px] md:text-[30px] xl:text-[45px]">
+                  April 8, 2023 at 5PM UTC
+                </p>
                 <p>
                   Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a>
                 </p>
               </div>
             </section>
           </TabPanel>
-
           {/* REWARDS CALCULATOR */}
           <TabPanel sx={{ padding: '0' }} value="3">
             <div className="w-full mt-10">
