@@ -256,6 +256,9 @@ function App() {
                 <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
                   <a rel="noreferrer" target="_blank" href="https://preview.app.teddyswap.org/">Testnet</a>
                 </li>
+                <li className="text-white font-bold hover:text-gold-sand ease-linear duration-200">
+                  <a rel="noreferrer" target="_blank" href="https://docs.teddyswap.org/">Docs</a>
+                </li>
               </ul>
               <ul className="flex justify-between items-center gap-5">
                 <li className="w-[25px]"><a target="_blank" href="https://twitter.com/TeddySwap" rel="noreferrer"><img src="twitter.svg" alt="twitter icon" /></a></li>
@@ -341,7 +344,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                    As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 11,550 up to 30,800 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-minting-utility-and-launch-date" rel="noreferrer">article</a>.
+                    As a member of the Teddy Bears Club in round 1, you have the opportunity to receive 10,500 up to 28,000 TEDY tokens plus 10% bonus. To learn more, check out our <a target="_blank" className="font-black underline" href="https://blog.teddyswap.org/teddy-bears-club-minting-utility-and-launch-date/" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <div className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:mt-0">
@@ -399,7 +402,7 @@ function App() {
               </div>
               <div className="text-gold-sand mt-14 text-center justify-center flex flex-col xl:flex-row xl:gap-2">
                 <div>Official policy ID of round one NFTs:</div>
-                <a className="italic hover:text-white ease-linear duration-150 font-bold text-[10px] md:text-[1rem]" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87">ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87</a>
+                <a className="hover:text-white ease-linear duration-150 font-bold text-[10px] md:text-[1rem]" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87">ab182ed76b669b49ee54a37dee0d0064ad4208a859cc4fdf3f906d87</a>
               </div>
             </section>
           </TabPanel>
@@ -434,7 +437,7 @@ function App() {
                     The Teddy Bears Club is a limited NFT collection that provides advantages to TeddySwap users on Cardano. You can join the Teddy Bears Club and obtain TEDY tokens.
                   </p>
                   <p className="mt-6">
-                    As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://docs.teddyswap.org/articles/teddy-bears-club-round-2" rel="noreferrer">article</a>.
+                    As a member of the Teddy Bears Club in round 2, you have the chance to receive 4,200 to 7,000 TEDY tokens. To learn more, check out our <a target="_blank" className="font-black underline" href="https://blog.teddyswap.org/teddy-bears-club-round-2" rel="noreferrer">article</a>.
                   </p>
                 </div>
                 <div className="hidden m-0 grow sm:grid grid-cols-1 sm:grid-cols-2 order-1 m-auto gap-8 sm:gap-6 xl:gap-10 mt-20 sm:!mb-0">
@@ -447,12 +450,15 @@ function App() {
             </section>
             <div className="text-gold-sand mt-14 text-center justify-center flex flex-col xl:flex-row xl:gap-2">
               <div>Official policy ID of round two NFTs:</div>
-              <a className="italic hover:text-white ease-linear duration-150 font-bold text-[10px] md:text-[1rem]" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c">da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c</a>
+              <a className="hover:text-white ease-linear duration-150 font-bold text-[10px] md:text-[1rem]" target="_blank" rel="noreferrer" href="https://cardanoscan.io/tokenPolicy/da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c">da3562fad43b7759f679970fb4e0ec07ab5bebe5c703043acda07a3c</a>
             </div>
             {/* SECTION THREE */}
             <section className="pt-14 w-full">
               <div className="grow text-center text-gold-sand">
-                <p className="font-montserrat font-bold text-[28px] md:text-[30px] xl:text-[45px]">Round 2 Minting March 8th, 2023 at 5PM UTC</p>
+                <p className="font-montserrat font-bold text-[20px] md:text-[30px] xl:text-[45px]">Round 2 Minting ends on</p>
+                <p className="font-montserrat font-bold text-[20px] md:text-[30px] xl:text-[45px]">
+                  April 8, 2023 at 5PM UTC
+                </p>
                 <p>
                   Visit the minting website at this <a target="_blank" className="underline" href="https://teddyswap.peppermintnft.io/" rel="noreferrer">link</a>
                 </p>
