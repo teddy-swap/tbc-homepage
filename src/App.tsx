@@ -106,6 +106,7 @@ function App() {
   const [tedyToAdaMarketCap, setTedyToAdaMarketCap] = useState<number>(0);
   const [tedyToUsdMarketCap, setTedyToUsdMarketCap] = useState<number>(0);
   const [adaToUsd, setAdaToUsd] = useState<number>(0);
+  const [nftPageCount, setNftPageCount] = useState<number>(0);
 
   const roundOneTotalFisoRewards = roundOneNftsHeld * ROUND_ONE_FISO_REWARD;
   const roundTwoTotalFisoRewards = roundTwoNftsHeld * ROUND_TWO_FISO_REWARD;
@@ -145,6 +146,15 @@ function App() {
     if (isRoundOne) return (roundOneTedyToAdaTotal / (roundOneNftsHeld * ROUND_ONE_MINT_PRICE)) * 100;
     return (roundTwoTedyToAdaTotal / (roundTwoNftsHeld * ROUND_TWO_MINT_PRICE)) * 100;
   }, [roundOneNftsHeld, roundTwoNftsHeld, roundOneTedyToAdaTotal, roundTwoTedyToAdaTotal])
+
+  const getNftPageCount = useCallback(() => {
+    return Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE);
+  }, [bears, search])
+
+  useEffect(() => {
+    setNftPageCount(getNftPageCount());
+    if (nftPageCount === 1) setPage(1);
+  }, [search, nftPageCount, getNftPageCount])
 
   useEffect(() => {
     setRoundOnePercentageShare(calculatePercentageShareFromAvailableRewards(true));
@@ -363,8 +373,8 @@ function App() {
                   <TextField id="outlined-basic" label="Search" variant="outlined" size="small" fullWidth InputProps={{ endAdornment: <Search /> }} value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
                 <div className="flex w-full">
-                  <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
-                  <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
+                  <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={nftPageCount} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
+                  <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={nftPageCount} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
                 </div>
               </div>
               <div className="xl:mt-4 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-12">
@@ -397,8 +407,8 @@ function App() {
                 })}
               </div>
               <div className="my-4">
-                <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
-                <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={Math.ceil(Number(bears?.filter(b => b.name.indexOf(search) !== -1 || search === '').length) / ASSETS_PER_PAGE)} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
+                <Pagination className="lg:hidden" size="small" variant="outlined" page={page} count={nftPageCount} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
+                <Pagination className="hidden lg:block" size="large" variant="outlined" page={page} count={nftPageCount} sx={{ color: 'white' }} onChange={(e, v) => setPage(v)} />
               </div>
               <div className="text-gold-sand mt-14 text-center justify-center flex flex-col xl:flex-row xl:gap-2">
                 <div>Official policy ID of round one NFTs:</div>
