@@ -1004,10 +1004,6 @@ video {
   font-size: 24px;
 }
 
-.text-\[28px\] {
-  font-size: 28px;
-}
-
 .\!font-bold {
   font-weight: 700 !important;
 }
@@ -1022,10 +1018,6 @@ video {
 
 .font-medium {
   font-weight: 500;
-}
-
-.italic {
-  font-style: italic;
 }
 
 .\!text-gold-sand {
